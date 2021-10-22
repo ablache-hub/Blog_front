@@ -17,7 +17,7 @@ export default function TopBar() {
                 </ul>
             </div>
             <div className="topRight">
-                <img className="topImg" src="/img/profil.jpg"></img>
+                <img className="topImg" src="/assets/profil.jpg"></img>
                 <i class="topSearchIcon fas fa-search"></i>
             </div>
         </div>
