@@ -1,8 +1,9 @@
 import "./post.css"
 
-export default function Post() {
+export default function Post({posts}) {
     return (
         <div className="post">
+            {console.log(posts)}
             <img 
             className="postImg"
             src="https://orgaphenix.com/wp-content/uploads/2020/01/secrets-photo-profil-linkedin.jpeg"
@@ -13,12 +14,12 @@ export default function Post() {
                 <span className="postCat">Music</span>
                 <span className="postCat">Life</span>
             </div>
-            <span className="postTitle">Lorem, ipsum dolor sit
+            <span className="postTitle">{posts.titre}
             </span>
             <hr/>
             <span className="postDate">1 hour ago</span>
         </div>
-        <p className="postDesc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod repellat soluta tempore iure sunt temporibus architecto aliquid cum voluptatem, exercitationem, aliquam molestiae rerum iste nulla numquam. Asperiores nobis optio nemo facilis quibusdam laboriosam. Quis velit autem porro veniam aperiam perspiciatis, nostrum dolores amet rerum iste dolorum. Non et error est!</p>
+        <p className="postDesc">{posts.contenu}</p>
         </div>
     )
 }
