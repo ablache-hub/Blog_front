@@ -22,7 +22,7 @@ export default function TopBar() {
             </div>
             <div className="topRight">
                 {user ? (
-                    <img className="topImg" src="/assets/profil.jpg"></img>
+                    <img className="topImg" src="/assets/profil.jpg" alt=""></img>
                 ) : (
                     <ul className="topList">
                         <li className="topListItem">

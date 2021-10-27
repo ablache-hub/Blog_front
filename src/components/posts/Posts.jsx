@@ -8,7 +8,7 @@ export default function Posts({posts}) {
     return (
         <div className="posts">
             {posts.map((p)=>(
-                <Post posts={p}/>
+                <Post key={p.id} posts={p}/>
                     )
             )}
            

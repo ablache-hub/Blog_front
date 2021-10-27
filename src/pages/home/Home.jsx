@@ -20,7 +20,6 @@ export default function Home() {
         fetchingData()
     }, [])
 
-
     return (
         <>
             <Header/>
