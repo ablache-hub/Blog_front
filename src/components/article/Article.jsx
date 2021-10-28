@@ -2,6 +2,8 @@ import { useLocation } from "react-router"
 import { useEffect, useState } from "react";
 import "./article.css"
 import axios from "axios";
+import { Link } from "react-router-dom"
+
 
 export default function Article() {
     // On récupère l'id dans l'url
@@ -33,14 +35,18 @@ export default function Article() {
                 </h1>
                 <div className="singlePostInfo">
                     <span className="singlePostAutor">
-                        {/* La promesse doit être testée pour éviter une erreur "undefined" */}
-                        {post.auteur ? post.auteur.username : void 0}
+                        {/* On doit tester l'existance d'un auteur avant l'affichage pour éviter une erreur "undefined" */}
+                        {post.auteur ?
+                            <Link to={`/?${post.auteur.username}`}>
+                                <span className="postTitle">{post.auteur.username}</span>
+                            </Link>
+                            : void 0
+                        }
                     </span>
                     <span className="singlePostDate">{post.date}</span>
                 </div>
                 <p className="singlePostDesc">{post.contenu}</p>
             </div>
-            
         </div>
     )
 }
