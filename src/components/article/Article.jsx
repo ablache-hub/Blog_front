@@ -37,7 +37,7 @@ export default function Article() {
                     <span className="singlePostAutor">
                         {/* On doit tester l'existance d'un auteur avant l'affichage pour éviter une erreur "undefined" */}
                         {post.auteur ?
-                            <Link to={`/?${post.auteur.username}`}>
+                            <Link className="link" to={`/?${post.auteur.username}`}>
                                 <span className="postTitle">{post.auteur.username}</span>
                             </Link>
                             : void 0
