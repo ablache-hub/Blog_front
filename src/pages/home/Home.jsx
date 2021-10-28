@@ -1,33 +1,49 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router";
 import Header from "../../components/header/Header"
-import Posts from "../../components/posts/Posts"
+import ListeArticles from "../../components/listeArticles/ListeArticles"
 import Sidebar from "../../components/sidebar/Sidebar"
 import "./home.css"
 
 export default function Home() {
 
-    const [fetchData, setFetchData] = useState([])
+    const [fetchArticle, setFetchArticle] = useState([])
+
+    //Extraction username de l'url
+    const location = (useLocation().search).replace("?", "");
+
+
     useEffect(() => {
 
-        const fetchingData = async () => {
-            await axios.get("/article")
-                .then((response) => {
-                    setFetchData(response.data)
-                })
-
+        const fetchingArticle = async () => {
+            //Si username dans l'url, on récup ses articles
+            location ?
+                await axios.get("/api/user/" + location)
+                    .then((response) => {
+                        setFetchArticle(response.data.articles)
+                    })
+                //Sinon on charge la liste générique
+                :
+                await axios.get("/article/all")
+                    .then((response) => {
+                        setFetchArticle(response.data)
+                    })
         }
-        fetchingData()
+
+        fetchingArticle()
     }, [])
 
     return (
         <>
-            <Header/>
+            <Header />
             <div className="home">
-
-            <Posts posts={fetchData}/>
-            <Sidebar/>
-        </div>
+                {fetchArticle ? <ListeArticles listeArticles={fetchArticle} />
+                    :
+                    <p>Aucun article</p>
+                }
+                <Sidebar />
+            </div>
         </>
     )
 }

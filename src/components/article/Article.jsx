@@ -1,13 +1,12 @@
 import { useLocation } from "react-router"
 import { useEffect, useState } from "react";
-import "./singlePost.css"
+import "./article.css"
 import axios from "axios";
 
-export default function SinglePost() {
+export default function Article() {
     // On récupère l'id dans l'url
     const location = useLocation();
     const path = location.pathname.split("/")[2];
-
     const [post, setPost] = useState({})
 
     useEffect(() => {
@@ -41,6 +40,7 @@ export default function SinglePost() {
                 </div>
                 <p className="singlePostDesc">{post.contenu}</p>
             </div>
+            
         </div>
     )
 }

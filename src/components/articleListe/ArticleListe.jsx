@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom"
 import "./post.css"
 
-export default function Post({posts}) {
+export default function ArticleListe({article}) {
     return (
         <div className="post">
-            {console.log(posts)}
+            {console.log(article)}
             <img 
             className="postImg"
             src="https://orgaphenix.com/wp-content/uploads/2020/01/secrets-photo-profil-linkedin.jpeg"
@@ -12,15 +12,15 @@ export default function Post({posts}) {
             />
             <div className="postInfo">
                 <div className="postCats">
-                <span className="postCat">{posts.categorie}</span>
+                <span className="postCat">{article.categorie}</span>
             </div>
-            <Link to={`/post/${posts.id}`}>            
-                <span className="postTitle">{posts.titre}</span>
+            <Link to={`/post/${article.id}`}>
+                <span className="postTitle">{article.titre}</span>
             </Link>
             <hr/>
-            <span className="postDate">{posts.date}</span>
+            <span className="postDate">{article.date}</span>
         </div>
-        <p className="postDesc">{posts.contenu}</p>
+        <p className="postDesc">{article.contenu}</p>
         </div>
     )
 }

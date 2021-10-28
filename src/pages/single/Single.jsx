@@ -1,11 +1,11 @@
 import Sidebar from "../../components/sidebar/Sidebar"
-import SinglePost from "../../components/singlePost/SinglePost"
+import Article from "../../components/article/Article"
 import "./single.css"
 
 export default function Single() {
     return (
         <div className="single">
-            <SinglePost/>
+            <Article/>
             <Sidebar/>
         </div>
     )
