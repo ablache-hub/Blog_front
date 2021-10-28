@@ -30,7 +30,6 @@ export default function Home() {
                         setFetchArticle(response.data)
                     })
         }
-
         fetchingArticle()
     }, [])
 
