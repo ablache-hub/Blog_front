@@ -19,13 +19,14 @@ export default function Home() {
         const fetchingArticle = async () => {
             //Si username dans l'url, on récup ses articles
             location ?
-                await axios.get("/api/user/" + location)
+                await axios.get("/api/user/get/" + location, JSON.stringify(localStorage.getItem('user') )   
+                )
                     .then((response) => {
                         setFetchArticle(response.data.articles)
                     })
                 //Sinon on charge la liste générique
                 :
-                await axios.get("/article/all")
+                await axios.get("/article/get/all")
                     .then((response) => {
                         setFetchArticle(response.data)
                     })

@@ -13,7 +13,7 @@ export default function Article() {
 
     useEffect(() => {
         const getPost = async () => {
-            await axios.get("/article/" + path)
+            await axios.get("/article/get/" + path)
                 .then((response) => {
                     setPost(response.data)
                 })

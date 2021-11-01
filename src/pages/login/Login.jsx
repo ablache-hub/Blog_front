@@ -18,10 +18,23 @@ export default function Login() {
               username: userRef.current.value,
               password: passwordRef.current.value,
           }).then(res => {
-            localStorage.setItem('user', res.headers.token)
-           
-          },
-          console.log(localStorage)
+            if (res.headers.authorization) {
+                const user = {
+                    token: res.headers.authorization,
+                    role: res.data
+                }
+
+                const stockage = () => {
+
+                     localStorage.setItem('user', JSON.stringify(user));
+                  /*  const res = await SecureStore.getItemAsync('user');
+                    const objRes = JSON.parse(res);
+                    console.log("test" + objRes.token);*/
+                }
+                stockage();
+            } 
+            console.log(localStorage.getItem('user'))
+        },
             )
         } catch(err) {
             console.log(err)

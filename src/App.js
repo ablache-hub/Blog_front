@@ -20,10 +20,10 @@ function App() {
         <Route exact path="/">
           <Home />
         </Route>
-        <Route path="/register">{user ? <Home/>:<Register />}</Route>
-        <Route path="/login">{user ? <Home/>:<Login />}</Route>
-        <Route path="/write">{user ? <Write /> : <Register/>}</Route>
-        <Route path="/settings">{user ? <Settings /> : <Register/>}</Route>
+        <Route path="/register">{localStorage.getItem('user') ? <Home/>:<Register />}</Route>
+        <Route path="/login">{localStorage.getItem('user') ? <Home/>:<Login />}</Route>
+        <Route path="/write">{localStorage.getItem('user') ? <Write /> : <Register/>}</Route>
+        <Route path="/settings">{localStorage.getItem('user') ? <Settings /> : <Register/>}</Route>
         <Route path="/post/:postId">
           <Article/>
         </Route>
