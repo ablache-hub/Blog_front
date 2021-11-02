@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 export default function TopBar() {
 
+
     const [isLog, setisLog] = useState(["alright"]);
 
     const logout = () => {
