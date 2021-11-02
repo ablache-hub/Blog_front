@@ -18,11 +18,21 @@ export default function TopBar() {
             </div>
             <div className="topCenter">
                 <ul className="topList">
-                    <li className="topListItem" ><Link to="/" className="link">HOME</Link></li>
-                    <li className="topListItem"><Link to="/" className="link">ABOUT</Link></li>
-                    <li className="topListItem"><Link to="/" className="link">CONTACT</Link></li>
-                    <li className="topListItem"><Link to="/write" className="link">{token && "WRITE"}</Link></li>
-                    <li className="topListItem" onClick={handleLogout}><Link to="/" className="link">{token && "LOGOUT"}</Link></li>
+                    <li className="topListItem">
+                        <Link to="/" className="link">HOME</Link>
+                    </li>
+                    <li className="topListItem">
+                        <Link to="/" className="link">ABOUT</Link>
+                    </li>
+                    <li className="topListItem">
+                        <Link to="/" className="link">CONTACT</Link>
+                    </li>
+                    <li className="topListItem">
+                        <Link to="/write" className="link">{token && "WRITE"}</Link>
+                    </li>
+                    <li className="topListItem" onClick={handleLogout}>
+                        <Link to="/" className="link">{token && "LOGOUT"}</Link>
+                    </li>
                 </ul>
             </div>
             <div className="topRight">
