@@ -19,7 +19,7 @@ export default function TopBar() {
             <div className="topCenter">
                 <ul className="topList">
                     <li className="topListItem">
-                        <Link to="/" className="link">HOME</Link>
+                        <Link to={`/?all`} className="link">HOME</Link>
                     </li>
                     <li className="topListItem">
                         <Link to="/" className="link">ABOUT</Link>

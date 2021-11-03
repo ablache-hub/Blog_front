@@ -9,6 +9,7 @@ export default function Article() {
     // On récupère l'id dans l'url
     const location = useLocation();
     const path = location.pathname.split("/")[2];
+
     const [post, setPost] = useState({})
 
     useEffect(() => {
@@ -28,10 +29,15 @@ export default function Article() {
                 <img
                     src="https://cdn.futura-sciences.com/buildsv6/images/wide1920/8/d/6/8d638f7cad_50170753_22048-yuekai-du-grand-banquet-copie.jpg" alt="" className="singlePostImg" />
                 <h1 className="singlePostTitle">{post.titre}
-                    <div className="singlePostEdit">
-                        <i className="singlePostIcon far fa-edit"></i>
-                        <i className="singlePostIcon far fa-trash-alt"></i>
-                    </div>
+                    {post.auteur ?
+                        (
+                            post.auteur.username === localStorage.getItem('username') &&
+                            <div className="singlePostEdit">
+                                <i className="singlePostIcon far fa-edit"></i>
+                                <i className="singlePostIcon far fa-trash-alt"></i>
+                            </div>
+                        ) : void 0
+                    }
                 </h1>
                 <div className="singlePostInfo">
                     <span className="singlePostAutor">

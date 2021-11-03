@@ -10,12 +10,11 @@ export default function Home() {
 
     const [fetchArticle, setFetchArticle] = useState([])
 
-    //Extraction username de l'url
+    //Extraction username de l'url pour le fetching API des articles d'un utilisateur précis
     const location = (useLocation().search).replace("?", "");
 
 
     useEffect(() => {
-
         const fetchingArticle = async () => {
             //Si username dans l'url, on récup ses articles
             location ?
