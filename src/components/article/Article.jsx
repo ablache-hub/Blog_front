@@ -3,12 +3,16 @@ import { useEffect, useState } from "react";
 import "./article.css"
 import axios from "axios";
 import { Link } from "react-router-dom"
+import { useContext } from "react";
+import { Context } from "../../context/Context";
+
 
 
 export default function Article() {
     // On récupère l'id dans l'url
     const location = useLocation();
     const path = location.pathname.split("/")[2];
+    const {token, username} = useContext(Context)
 
     const [post, setPost] = useState({})
 
@@ -22,6 +26,14 @@ export default function Article() {
         getPost()
     }, [path])
 
+    const handleDelete = async() => {
+        await axios.delete("/article/auteur/"+username+"/delete/"+post.id,  
+        {
+            headers: { 'Authorization': token }
+        });
+        window.location.replace("/")
+    }
+
 
     return (
         <div className="singlePost">
@@ -31,10 +43,10 @@ export default function Article() {
                 <h1 className="singlePostTitle">{post.titre}
                     {post.auteur ?
                         (
-                            post.auteur.username === localStorage.getItem('username') &&
+                            post.auteur.username === username &&
                             <div className="singlePostEdit">
                                 <i className="singlePostIcon far fa-edit"></i>
-                                <i className="singlePostIcon far fa-trash-alt"></i>
+                                <i className="singlePostIcon far fa-trash-alt" onClick={handleDelete}></i>
                             </div>
                         ) : void 0
                     }

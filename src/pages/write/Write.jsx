@@ -1,5 +1,5 @@
 import "./write.css";
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { Context } from '../../context/Context';
 import axios from "axios";
 
@@ -8,22 +8,34 @@ import axios from "axios";
 export default function Write() {
     const [title, setTitle] = useState('');
     const [contenu, setContenu] = useState('');
+    const [newId, setnewId] = useState('')
     const { username, token } = useContext(Context)
+ 
+    
 
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const newPost = {
             titre: title,
             contenu,
         }
-        axios.post("/article/" + username,
+        await axios.post("/article/" + username,
             newPost,
             {
                 headers: { 'Authorization': token }
             })
-
+            .then((response) => {
+               setnewId(response.data.id)
+            })
     }
+
+    //Après avoir POST, on redirige vers l'article nouvellement crée grâve à l'Id récup dans la reponse
+    useEffect(() => { 
+        newId &&
+            window.location.replace("/post/" + newId)
+        
+      });
+
 
     return (
         <div className="write">
@@ -44,7 +56,7 @@ export default function Write() {
                         placeholder="Titre article"
                         className="writeInput"
                         autoFocus={true}
-                        onChange={e=>setTitle(e.target.value)}
+                        onChange={e => setTitle(e.target.value)}
                     />
                 </div>
                 <div className="writeFormGroup">
@@ -52,7 +64,7 @@ export default function Write() {
                         placeholder="Ecrivez texte..."
                         type="text"
                         className="writeInput writeText"
-                        onChange={e=>setContenu(e.target.value)}
+                        onChange={e => setContenu(e.target.value)}
 
                     />
                 </div>

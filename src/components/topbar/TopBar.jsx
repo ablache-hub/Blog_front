@@ -3,11 +3,18 @@ import "./topbar.css"
 import { useContext } from "react";
 import { Context } from "../../context/Context";
 
+
 export default function TopBar() {
     const { token, dispatch } = useContext(Context);
 
     const handleLogout = () => {
         dispatch({ type: "LOGOUT" })
+    }
+
+    //Clean les params de l'url pour retour à la page "home" par defaut
+    const cleanOnRefresh =() => {
+        window.history.replaceState(null, '', '/');
+        window.location.reload()
     }
 
     return (
@@ -19,7 +26,9 @@ export default function TopBar() {
             <div className="topCenter">
                 <ul className="topList">
                     <li className="topListItem">
-                        <Link to={`/?all`} className="link">HOME</Link>
+                        <Link to="/" className="link" onClick={cleanOnRefresh}>
+                            HOME
+                        </Link>
                     </li>
                     <li className="topListItem">
                         <Link to="/" className="link">ABOUT</Link>
