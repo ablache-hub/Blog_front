@@ -3,7 +3,7 @@ import Reducer from "./Reducer";
 
 const INITIAL_STATE = {
     username: localStorage.getItem('username') || null,
-    token: localStorage.getItem('token') || null,
+    token: localStorage.getItem('token') !== 'null' ? localStorage.getItem('token') : null,
     role: localStorage.getItem('role') || null,
     isFetching: false,
     error: false,

@@ -45,7 +45,8 @@ export default function TopBar() {
                 </ul>
             </div>
             <div className="topRight">
-                {token ? (
+                {console.log(token)}
+                {token != null ? (
                     <img className="topImg" src="/assets/profil.jpg" alt=""></img>
                 ) : (
                     <ul className="topList">
