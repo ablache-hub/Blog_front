@@ -26,7 +26,7 @@ function App() {
         <Route path="/login">{token ? <Home/>:<Login />}</Route>
         <Route path="/write">{token ? <Write /> : <Register/>}</Route>
         <Route path="/settings">{token ? <Settings /> : <Register/>}</Route>
-        <Route path="/post/:postId">
+        <Route path="/author/:username/post/:postId">
           <Article/>
         </Route>
 

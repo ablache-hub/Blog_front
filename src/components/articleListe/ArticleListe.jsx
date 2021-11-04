@@ -14,9 +14,16 @@ export default function ArticleListe({article}) {
                 <div className="postCats">
                 <span className="postCat">{article.categorie}</span>
             </div>
-            <Link to={`/post/${article.id}`}>
-                <span className="postTitle">{article.titre}</span>
-            </Link>
+            {article.auteur ? 
+             <Link to={`/author/${article.auteur}/post/${article.id}`}>
+             <span className="postTitle">{article.titre}</span>
+         </Link>
+         :
+         <Link to={`/author/null/post/${article.id}`}>
+         <span className="postTitle">{article.titre}</span>
+     </Link>
+        }
+            
             <hr/>
             <span className="postDate">{article.date}</span>
         </div>

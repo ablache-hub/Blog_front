@@ -11,7 +11,7 @@ import { Context } from "../../context/Context";
 export default function Article() {
     // On récupère l'id dans l'url
     const location = useLocation();
-    const path = location.pathname.split("/")[2];
+    const path = location.pathname.split("/")[4];
     const {token, username} = useContext(Context)
 
     const [post, setPost] = useState({})
