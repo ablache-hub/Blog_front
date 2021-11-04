@@ -37,7 +37,7 @@ export default function Home() {
         <>
             <Header />
             <div className="home">
-                {fetchArticle ? <ListeArticles listeArticles={fetchArticle} />
+                {fetchArticle ? <ListeArticles listeArticles={fetchArticle} userUrl={location} />
                     :
                     <p>Aucun article</p>
                 }
