@@ -38,7 +38,7 @@
     font-size: 30px;
     border: none;
     padding: 20px;
-    width: 70vw;
+    width: 30vw;
 }
 
 .writeInput:focus {
@@ -61,4 +61,8 @@
     border-radius: 10%;
     cursor: pointer;
     font-size: 16px;
+}
+
+.categorie-label, .categorie-form {
+    font-family: 'Varela';
 }

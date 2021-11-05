@@ -75,9 +75,9 @@ export default function Write() {
                         onChange={e => setTitle(e.target.value)}
                     />
 
-                    <label htmlFor="cat-select">Catégorie</label>
+                    <label className="categorie-label" htmlFor="cat-select">Catégorie</label>
                     <select
-                        className="categorie"
+                        className="categorie-form"
                         id="cat-select"
                         onChange={e => setCategorie(e.target.value)}>
                         <option value="">--Choisissez une catégorie--</option>
@@ -85,7 +85,7 @@ export default function Write() {
                             categorieListe.map((categorie) => (
                                 <option value={categorie.nom}>{categorie.nom}</option>
                             ))
-                        }   
+                        }
                     </select>
                 </div>
 
