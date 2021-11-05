@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import "./post.css"
+import "./articleListe.css"
 
 export default function ArticleListe(props) {
     return (
