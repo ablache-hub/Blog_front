@@ -12,7 +12,7 @@ export default function Article() {
     // On récupère l'id dans l'url
     const location = useLocation();
     const path = location.pathname.split("/")[4];
-    const {token, username} = useContext(Context)
+    const { token, username } = useContext(Context)
 
     const [post, setPost] = useState({})
 
@@ -26,16 +26,17 @@ export default function Article() {
         getPost()
     }, [path])
 
-    const handleDelete = async() => {
-        await axios.delete("/article/auteur/"+username+"/delete/"+post.id,  
-        {
-            headers: { 'Authorization': token }
-        });
+    const handleDelete = async () => {
+        await axios.delete("/article/auteur/" + username + "/delete/" + post.id,
+            {
+                headers: { 'Authorization': token }
+            });
         window.location.replace("/")
     }
 
 
     return (
+        console.log(post),
         <div className="singlePost">
             <div className="singlePostWrapper">
                 <img
@@ -50,8 +51,16 @@ export default function Article() {
                             </div>
                         ) : void 0
                     }
+                  
                 </h1>
+                 <span className="singlePostDate">
+                    {post.categorie &&
+                        post.categorie.nom
+                    }
+                </span> 
                 <div className="singlePostInfo">
+
+                    
                     <span className="singlePostAutor">
                         {/* On doit tester l'existance d'un auteur avant l'affichage pour éviter une erreur "undefined" */}
                         {post.auteur ?
