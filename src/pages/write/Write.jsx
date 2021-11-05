@@ -19,7 +19,7 @@ export default function Write() {
             titre: title,
             contenu,
         }
-        await axios.post("/article/" + username,
+        await axios.post("/article/" + username + "?categorie=Sport",
             newPost,
             {
                 headers: { 'Authorization': token }
