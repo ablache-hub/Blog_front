@@ -10,8 +10,10 @@ export default function Write() {
     const [contenu, setContenu] = useState('');
     const [newId, setnewId] = useState('')
     const { username, token } = useContext(Context)
- 
-    
+
+    const [categorieListe, setCategorieListe] = useState([]);
+    const [categorie, setCategorie] = useState([]);
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -19,22 +21,34 @@ export default function Write() {
             titre: title,
             contenu,
         }
-        await axios.post("/article/" + username + "?categorie=Sport",
+        await axios.post("/article/" + username + "?categorie=" + categorie,
             newPost,
             {
                 headers: { 'Authorization': token }
             })
             .then((response) => {
-               setnewId(response.data.id)
+                setnewId(response.data.id)
             })
     }
 
     //Après avoir POST, on redirige vers l'article nouvellement crée grâve à l'Id récup dans la reponse
-    useEffect(() => { 
+    useEffect(() => {
         newId &&
-            window.location.replace("/author/"+username+"/post/" + newId)
-        
-      });
+            window.location.replace("/author/" + username + "/post/" + newId);
+    }, [newId])
+
+    useEffect(() => {
+
+        const fetchingCategorie = async () => {
+            await axios.get("/api/categorie/getAll")
+                .then((response) => {
+                    setCategorieListe(response.data);
+                })
+        }
+        fetchingCategorie()
+    }, [])
+
+
 
 
     return (
@@ -47,10 +61,12 @@ export default function Write() {
                     <label htmlFor="fileInput">
                         <i className="writeIcon fas fa-plus"></i>
                     </label>
+
                     <input
                         type="file"
                         id="fileInput"
                         style={{ display: "none" }} />
+
                     <input
                         type="text"
                         placeholder="Titre article"
@@ -58,7 +74,21 @@ export default function Write() {
                         autoFocus={true}
                         onChange={e => setTitle(e.target.value)}
                     />
+
+                    <label htmlFor="cat-select">Catégorie</label>
+                    <select
+                        className="categorie"
+                        id="cat-select"
+                        onChange={e => setCategorie(e.target.value)}>
+                        <option value="">--Choisissez une catégorie--</option>
+                        {
+                            categorieListe.map((categorie) => (
+                                <option value={categorie.nom}>{categorie.nom}</option>
+                            ))
+                        }   
+                    </select>
                 </div>
+
                 <div className="writeFormGroup">
                     <textarea
                         placeholder="Ecrivez texte..."

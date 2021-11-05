@@ -12,11 +12,8 @@ export default function ArticleListe(props) {
             <div className="postInfo">
                 <div className="postCats">
                     <span className="postCat">
-                        {props.article.categorie && props.article.categorie.nom}
-                        {/* {props.article.categorie &&
-                            console.log(props.article.categorie),
-                            props.article.categorie.map((cat) => (console.log(cat))
-                            )} */}
+                        {props.article.categorie &&
+                            props.article.categorie.nom}
                     </span>
                 </div>
                 {props.article.auteur ?

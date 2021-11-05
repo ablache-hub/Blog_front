@@ -59,8 +59,6 @@ export default function Article() {
                     }
                 </span> 
                 <div className="singlePostInfo">
-
-                    
                     <span className="singlePostAutor">
                         {/* On doit tester l'existance d'un auteur avant l'affichage pour éviter une erreur "undefined" */}
                         {post.auteur ?
