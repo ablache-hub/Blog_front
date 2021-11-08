@@ -12,7 +12,7 @@ export default function TopBar() {
     }
 
     //Clean les params de l'url pour retour à la page "home" par defaut
-    const cleanOnRefresh =() => {
+    const cleanOnRefresh = () => {
         window.history.replaceState(null, '', '/');
         window.location.reload()
     }
@@ -31,32 +31,34 @@ export default function TopBar() {
                         </Link>
                     </li>
                     <li className="topListItem">
+                        <Link to="/write" className="link">{token && "WRITE"}</Link>
+                    </li>
+                    <li className="topListItem">
                         <Link to="/" className="link">ABOUT</Link>
                     </li>
                     <li className="topListItem">
                         <Link to="/" className="link">CONTACT</Link>
                     </li>
-                    <li className="topListItem">
-                        <Link to="/write" className="link">{token && "WRITE"}</Link>
-                    </li>
-                    <li className="topListItem" onClick={handleLogout}>
-                        <Link to="/" className="link">{token && "LOGOUT"}</Link>
-                    </li>
                 </ul>
             </div>
             <div className="topRight">
-                {console.log(token)}
-                {token != null ? (
-                    <img className="topImg" src="/assets/profil.jpg" alt=""></img>
-                ) : (
-                    <ul className="topList">
-                        <li className="topListItem">
-                            <Link className="link" to="/login">LOGIN</Link></li>
-                        <li className="topListItem">
-                            <Link className="link" to="/register">REGISTER</Link></li>
-                    </ul>
-                )}
+                {
+                    token != null ? (
+                        <>
+                            <img className="topImg" src="/assets/profil.jpg" alt=""></img>
+                                <Link to="/" className="linkLogout" onClick={handleLogout}>LOGOUT</Link>
+                            </>
+                    ) : (
+                        <ul className="topList">
+                            <li className="topListItem">
+                                <Link className="link" to="/login">LOGIN</Link></li>
+                            <li className="topListItem">
+                                <Link className="link" to="/register">REGISTER</Link></li>
+                        </ul>
+                    )
+                }
                 <i className="topSearchIcon fas fa-search"></i>
+
             </div>
         </div>
     )
