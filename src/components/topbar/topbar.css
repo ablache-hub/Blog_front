@@ -17,6 +17,10 @@
     justify-content: center;
 }
 
+.topRight{
+    justify-content: space-between;
+}
+
 .topCenter{
     flex:6;
 }

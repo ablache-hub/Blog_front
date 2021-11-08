@@ -46,8 +46,9 @@ export default function TopBar() {
                     token != null ? (
                         <>
                             <img className="topImg" src="/assets/profil.jpg" alt=""></img>
-                                <Link to="/" className="linkLogout" onClick={handleLogout}>LOGOUT</Link>
-                            </>
+                            <Link to="/profil" className="linkLogout">PROFIL</Link>
+                            <Link to="/" className="linkLogout" onClick={handleLogout}>LOGOUT</Link>
+                        </>
                     ) : (
                         <ul className="topList">
                             <li className="topListItem">

@@ -12,6 +12,7 @@ import {
 } from "react-router-dom";
 import Article from "./components/article/Article";
 import { Context } from "./context/Context";
+import Profil from "./pages/profil/Profil";
 
 function App() {
   const {token} = useContext(Context);
@@ -26,6 +27,7 @@ function App() {
         <Route path="/login">{token ? <Home/>:<Login />}</Route>
         <Route path="/write">{token ? <Write /> : <Register/>}</Route>
         <Route path="/settings">{token ? <Settings /> : <Register/>}</Route>
+        <Route path="/profil">{token ? <Profil /> : <Login/>}</Route>
         <Route path="/author/:username/post/:postId">
           <Article/>
         </Route>

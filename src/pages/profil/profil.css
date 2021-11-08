@@ -1,0 +1,14 @@
+.contenu {
+    color: red;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
+
+.article {
+    color: green
+}
+
+li {
+    color: grey;
+}
