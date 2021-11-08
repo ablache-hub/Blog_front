@@ -17,7 +17,7 @@ export default function ArticleListe(props) {
                     </span>
                 </div>
                 {props.article.auteur ?
-                    <Link to={`/author/${props.article.auteur}/post/${props.article.id}`}>
+                    <Link to={`/author/${props.article.auteur.username}/post/${props.article.id}`}>
                         <span className="postTitle">{props.article.titre}</span>
                     </Link>
                     :

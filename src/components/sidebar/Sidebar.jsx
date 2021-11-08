@@ -28,10 +28,10 @@ export default function Sidebar() {
                 <span className="sidebarTitle">CATEGORIES</span>
                 <ul className="sidebarList">
                     {categorie.map((categorie) => (
-                        <li className="sidebarListItem">{categorie.nom}</li>
+                        <li className="sidebarListItem"><a href={`/?cat=${categorie.nom}`}>{categorie.nom}</a></li>
                     )
                     )}
-                </ul>
+                </ul> 
             </div>
             <div className="sidebarItem">
                 <span className="sidebarTitle">FOLLOW US</span>

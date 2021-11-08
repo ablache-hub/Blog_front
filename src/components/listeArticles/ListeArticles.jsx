@@ -7,7 +7,10 @@ export default function ListeArticles(props) {
 
     return (
         <div className="posts">
-            {props.listeArticles.map((article)=>(
+            {!props.listeArticles.length ? 
+            <span>Aucun article</span> 
+            :
+            props.listeArticles.map((article)=>(
                 <ArticleListe key={article.id} article={article} userUrl={props.userUrl}/>
                     )
             )}
