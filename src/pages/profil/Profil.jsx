@@ -3,7 +3,7 @@ import "./profil.css"
 import { useEffect, useState, useContext } from "react";
 import { Context } from "../../context/Context";
 import axios from 'axios';
-import {decryptData} from '../../config/cryptoJs'
+import { decryptData } from '../../config/utils'
 
 
 
@@ -13,25 +13,25 @@ export default function Profil() {
     const [id, setId] = useState(null);
 
     useEffect(() => {
-        const fetchingProfil = async () => {
+        const fetchingProfilArticles = async () => {
             await axios.get("/api/user/myCredentials", { headers: { 'Authorization': decryptData(token) } })
                 .then((response) => {
                     setFetchProfil(response.data);
                 })
         }
-        fetchingProfil()
+        fetchingProfilArticles()
     }, [])
 
     useEffect(() => {
-        const deleteArticle = async () => {
+        const deleteProfileArticle = async () => {
             await axios.delete("/article/auteur/" + username + "/delete/" + id,
                 {
-                    headers: { 'Authorization': token }
+                    headers: { 'Authorization': decryptData(token) }
                 });
             window.location.reload();
 
         }
-        id && deleteArticle();
+        id && deleteProfileArticle();
 
     }, [id])
 
@@ -42,21 +42,22 @@ export default function Profil() {
 
     return (
         <div>
-            <span>
-                {fetchProfil.articles &&
-                    fetchProfil.articles.map((article) =>
-                        <ul className="article" key={article.id}>
-                            <i className="singlePostIcon far fa-edit"></i>
-                            <i className="singlePostIcon far fa-trash-alt"
-                                id={article.id} onClick={getId}
-                            ></i>
-                            <li>Titre: {article.titre}</li>
-                            <li>Date: {article.date}</li>
-                            <li>Categorie: {article.categorie.nom}</li>
-                            <li className="contenu">Contenu: {article.contenu}</li>
-                        </ul>)
-                }
-            </span>
+            {fetchProfil.articles &&
+                fetchProfil.articles.length ?
+                fetchProfil.articles.map((article) =>
+                    <ul className="article" key={article.id}>
+                        <i className="singlePostIcon far fa-edit"></i>
+                        <i className="singlePostIcon far fa-trash-alt"
+                            id={article.id} onClick={getId}
+                        ></i>
+                        <li>Titre: {article.titre}</li>
+                        <li>Date: {article.date}</li>
+                        <li>Categorie: {article.categorie.nom}</li>
+                        <li className="contenu">Contenu: {article.contenu}</li>
+                    </ul>)
+                :
+                <span>Aucun article</span>
+            }
         </div>
     )
 }

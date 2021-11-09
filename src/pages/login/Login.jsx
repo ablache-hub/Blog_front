@@ -3,16 +3,14 @@ import React from 'react'
 import { useRef, useContext } from 'react';
 import { Link } from 'react-router-dom'
 import { Context } from '../../context/Context';
+import { encryptData } from '../../config/utils'
 import './login.css'
-import {encryptData} from '../../config/cryptoJs'
-
-
 
 export default function Login() {
 
     const userRef = useRef();
     const passwordRef = useRef();
-    const {dispatch, isFetching } = useContext(Context)
+    const { dispatch, isFetching } = useContext(Context)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -22,7 +20,7 @@ export default function Login() {
                 username: userRef.current.value,
                 password: passwordRef.current.value,
             })
-            res.headers.authorization = encryptData(res.headers.authorization)
+            res.headers.authorization = encryptData(res.headers.authorization);
             dispatch({
                 type: "LOGIN_SUCESS",
                 payload: res,
@@ -70,12 +68,10 @@ export default function Login() {
                     placeholder="Entrez votre mdp"
                     ref={passwordRef}
                 />
-
                 <button className="loginButton" type="submit" disabled={isFetching}>Login</button>
             </form>
             <button className="loginRegisterButton">
                 <Link className="link" to="/register">Register</Link>
-
             </button>
         </div>
     )

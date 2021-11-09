@@ -5,7 +5,7 @@ import Header from "../../components/header/Header"
 import ListeArticles from "../../components/listeArticles/ListeArticles"
 import Sidebar from "../../components/sidebar/Sidebar"
 import "./home.css"
-import {encryptData, decryptData} from '../../config/cryptoJs'
+import {encryptData, decryptData} from '../../config/utils'
 
 export default function Home() {
 

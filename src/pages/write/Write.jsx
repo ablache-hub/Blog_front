@@ -2,18 +2,17 @@ import "./write.css";
 import { useState, useContext, useEffect } from 'react';
 import { Context } from '../../context/Context';
 import axios from "axios";
+import { decryptData } from '../../config/utils'
 
 
 
 export default function Write() {
     const [title, setTitle] = useState('');
     const [contenu, setContenu] = useState('');
-    const [newId, setnewId] = useState('')
-    const { username, token } = useContext(Context)
-
+    const [newId, setnewId] = useState('');
+    const { username, token } = useContext(Context);
     const [categorieListe, setCategorieListe] = useState([]);
     const [categorie, setCategorie] = useState([]);
-
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -21,14 +20,17 @@ export default function Write() {
             titre: title,
             contenu,
         }
-        await axios.post("/article/" + username + "?categorie=" + categorie,
-            newPost,
-            {
-                headers: { 'Authorization': token }
-            })
-            .then((response) => {
-                setnewId(response.data.id)
-            })
+
+        //Verifie si une caté est bien selectionnée
+        categorie.length > 0 &&
+            await axios.post("/article/" + username + "?categorie=" + categorie,
+                newPost,
+                {
+                    headers: { 'Authorization': decryptData(token) }
+                })
+                .then((response) => {
+                    setnewId(response.data.id)
+                })
     }
 
     //Après avoir POST, on redirige vers l'article nouvellement crée grâve à l'Id récup dans la reponse
@@ -38,7 +40,6 @@ export default function Write() {
     }, [newId])
 
     useEffect(() => {
-
         const fetchingCategorie = async () => {
             await axios.get("/api/categorie/getAll")
                 .then((response) => {
@@ -47,9 +48,6 @@ export default function Write() {
         }
         fetchingCategorie()
     }, [])
-
-
-
 
     return (
         <div className="write">
