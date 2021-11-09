@@ -13,6 +13,7 @@ import {
 import Article from "./components/article/Article";
 import { Context } from "./context/Context";
 import Profil from "./pages/profil/Profil";
+import ProfilDel from "./pages/profil/ProfilDel";
 
 function App() {
   const {token} = useContext(Context);
@@ -28,6 +29,7 @@ function App() {
         <Route path="/write">{token ? <Write /> : <Register/>}</Route>
         <Route path="/settings">{token ? <Settings /> : <Register/>}</Route>
         <Route path="/profil">{token ? <Profil /> : <Login/>}</Route>
+        <Route path="/del/:username/post/:postId">{token ? <ProfilDel /> : <Login/>}</Route>
         <Route path="/author/:username/post/:postId">
           <Article/>
         </Route>

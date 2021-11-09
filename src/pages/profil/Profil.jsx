@@ -11,6 +11,8 @@ export default function Profil() {
     const [fetchProfil, setFetchProfil] = useState([]);
     const { token, username } = useContext(Context);
     const [id, setId] = useState(null);
+    const [id2, setId2] = useState(null);
+
 
     useEffect(() => {
         const fetchingProfilArticles = async () => {
@@ -22,6 +24,10 @@ export default function Profil() {
         fetchingProfilArticles()
     }, [])
 
+    const getIdDel = (event) => {
+        setId(event.target.id);
+    }
+
     useEffect(() => {
         const deleteProfileArticle = async () => {
             await axios.delete("/article/auteur/" + username + "/delete/" + id,
@@ -31,14 +37,23 @@ export default function Profil() {
             window.location.reload();
 
         }
+        //La ternaire evite de rappeller la fonction quand la valeur d'id passe à null après suppression
         id && deleteProfileArticle();
 
     }, [id])
 
-    const getId = (event) => {
-        setId(event.target.id);
+    const getIdEdit = (event) => {
+        setId2(event.target.id);
     }
 
+    useEffect(() => {
+        const modifProfileArticle = () => {
+            window.location.replace("/del/" + username + "/post/" + id2)
+        }
+        //La ternaire evite de rappeller la fonction quand la valeur d'id passe à null après suppression
+        id2 && modifProfileArticle();
+
+    }, [id2])
 
     return (
         <div>
@@ -46,10 +61,15 @@ export default function Profil() {
                 fetchProfil.articles.length ?
                 fetchProfil.articles.map((article) =>
                     <ul className="article" key={article.id}>
-                        <i className="singlePostIcon far fa-edit"></i>
+                        <i className="singlePostIcon far fa-edit"
+                            id={article.id}
+                            onClick={getIdEdit}
+
+                        />
                         <i className="singlePostIcon far fa-trash-alt"
-                            id={article.id} onClick={getId}
-                        ></i>
+                            id={article.id}
+                            onClick={getIdDel}
+                        />
                         <li>Titre: {article.titre}</li>
                         <li>Date: {article.date}</li>
                         <li>Categorie: {article.categorie.nom}</li>

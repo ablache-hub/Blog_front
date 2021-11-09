@@ -54,6 +54,7 @@ export default function Write() {
             <img
                 className="writeImg"
                 src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/blogs/24132/images/CD4UFNxlQ8GgBMHtv9dR_010-reussir-photo-paysage.jpg" alt="" />
+            
             <form className="writeForm" onSubmit={handleSubmit}>
                 <div className="writeFormGroup">
                     <label htmlFor="fileInput">
