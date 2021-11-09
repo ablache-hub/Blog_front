@@ -1,10 +1,12 @@
 import axios from "axios";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import Header from "../../components/header/Header"
 import ListeArticles from "../../components/listeArticles/ListeArticles"
 import Sidebar from "../../components/sidebar/Sidebar"
 import "./home.css"
+import Environment from '../../env';
+
 
 
 export default function Home() {
@@ -13,9 +15,6 @@ export default function Home() {
 
     //Extraction username de l'url pour le fetching API des articles d'un utilisateur précis
     const location = useLocation().search.replace("?", "");
-
-    location.includes("cat=") ? console.log(location.replace("cat=", "")) : console.log(location)
-
 
     useEffect(() => {
         const fetchingArticle = async () => {
