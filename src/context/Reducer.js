@@ -1,3 +1,6 @@
+import {encryptData} from '../config/cryptoJs'
+
+
 const Reducer = (state, action) => {
     switch (action.type) {
         case "LOGIN_START":

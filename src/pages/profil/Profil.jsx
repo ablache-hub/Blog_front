@@ -3,6 +3,8 @@ import "./profil.css"
 import { useEffect, useState, useContext } from "react";
 import { Context } from "../../context/Context";
 import axios from 'axios';
+import {decryptData} from '../../config/cryptoJs'
+
 
 
 export default function Profil() {
@@ -12,7 +14,8 @@ export default function Profil() {
 
     useEffect(() => {
         const fetchingProfil = async () => {
-            await axios.get("/api/user/myCredentials", { headers: { 'Authorization': token } })
+            console.log("Token crypté: " + token)
+            await axios.get("/api/user/myCredentials", { headers: { 'Authorization': decryptData(token) } })
                 .then((response) => {
                     setFetchProfil(response.data);
                 })

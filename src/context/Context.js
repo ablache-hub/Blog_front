@@ -1,5 +1,7 @@
 import { createContext, useReducer, useEffect } from "react";
 import Reducer from "./Reducer";
+import {encryptData} from '../config/cryptoJs'
+
 
 const INITIAL_STATE = {
     username: localStorage.getItem('username') || null,

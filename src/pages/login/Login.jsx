@@ -4,6 +4,7 @@ import { useRef, useContext } from 'react';
 import { Link } from 'react-router-dom'
 import { Context } from '../../context/Context';
 import './login.css'
+import {encryptData} from '../../config/cryptoJs'
 
 
 
@@ -21,10 +22,12 @@ export default function Login() {
                 username: userRef.current.value,
                 password: passwordRef.current.value,
             })
+            res.headers.authorization = encryptData(res.headers.authorization)
             dispatch({
                 type: "LOGIN_SUCESS",
                 payload: res,
             })
+            console.log(res.headers.authorization)
 
             //   .then(res => {
             //     if (res.headers.authorization) {

@@ -5,9 +5,7 @@ import Header from "../../components/header/Header"
 import ListeArticles from "../../components/listeArticles/ListeArticles"
 import Sidebar from "../../components/sidebar/Sidebar"
 import "./home.css"
-import Environment from '../../env';
-
-
+import {encryptData, decryptData} from '../../config/cryptoJs'
 
 export default function Home() {
 
@@ -15,6 +13,11 @@ export default function Home() {
 
     //Extraction username de l'url pour le fetching API des articles d'un utilisateur précis
     const location = useLocation().search.replace("?", "");
+
+    const encrypt = encryptData("test");
+    const decrypt = decryptData(encrypt);
+    console.log(encrypt);
+    console.log(decrypt);
 
     useEffect(() => {
         const fetchingArticle = async () => {
@@ -46,6 +49,7 @@ export default function Home() {
         <>
             <Header />
             <div className="home">
+                
                 {fetchArticle ? <ListeArticles listeArticles={fetchArticle} userUrl={location} />
                     :
                     <p>Aucun article</p>
