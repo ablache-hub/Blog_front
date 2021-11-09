@@ -14,7 +14,6 @@ export default function Profil() {
 
     useEffect(() => {
         const fetchingProfil = async () => {
-            console.log("Token crypté: " + token)
             await axios.get("/api/user/myCredentials", { headers: { 'Authorization': decryptData(token) } })
                 .then((response) => {
                     setFetchProfil(response.data);

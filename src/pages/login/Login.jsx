@@ -27,7 +27,6 @@ export default function Login() {
                 type: "LOGIN_SUCESS",
                 payload: res,
             })
-            console.log(res.headers.authorization)
 
             //   .then(res => {
             //     if (res.headers.authorization) {
