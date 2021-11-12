@@ -5,46 +5,45 @@ import axios from "axios";
 import { Link } from "react-router-dom"
 import { useContext } from "react";
 import { Context } from "../../context/Context";
+import { decryptData } from "../../config/utils";
 
 
 
 export default function Article() {
     // On récupère l'id dans l'url
     const location = useLocation();
-    const path = location.pathname.split("/")[4];
+    const pathUrl = location.pathname.split("/")[4];
     const { token, username } = useContext(Context)
-
-    const [post, setPost] = useState({})
+    const [article, setArticle] = useState({})
 
     useEffect(() => {
         const getPost = async () => {
-            await axios.get("/article/get/" + path)
+            await axios.get("/article/get/" + pathUrl)
                 .then((response) => {
-                    setPost(response.data)
+                    setArticle(response.data)
                 })
         }
         getPost()
-    }, [path])
+    }, [])
 
     const handleDelete = async () => {
-        await axios.delete("/article/auteur/" + username + "/delete/" + post.id,
+        await axios.delete("/article/auteur/" + username + "/delete/" + article.id,
             {
-                headers: { 'Authorization': token }
+                headers: { 'Authorization': decryptData(token) }
             });
         window.location.replace("/")
     }
 
 
     return (
-        console.log(post),
         <div className="singlePost">
             <div className="singlePostWrapper">
                 <img
                     src="https://cdn.futura-sciences.com/buildsv6/images/wide1920/8/d/6/8d638f7cad_50170753_22048-yuekai-du-grand-banquet-copie.jpg" alt="" className="singlePostImg" />
-                <h1 className="singlePostTitle">{post.titre}
-                    {post.auteur ?
+                <h1 className="singlePostTitle">{article.titre}
+                    {article.auteur ?
                         (
-                            post.auteur.username === username &&
+                            article.auteur.username === username &&
                             <div className="singlePostEdit">
                                 <i className="singlePostIcon far fa-edit"></i>
                                 <i className="singlePostIcon far fa-trash-alt" onClick={handleDelete}></i>
@@ -54,23 +53,23 @@ export default function Article() {
                   
                 </h1>
                  <span className="singlePostDate">
-                    {post.categorie &&
-                        post.categorie.nom
+                    {article.categorie &&
+                        article.categorie.nom
                     }
                 </span> 
                 <div className="singlePostInfo">
                     <span className="singlePostAutor">
                         {/* On doit tester l'existance d'un auteur avant l'affichage pour éviter une erreur "undefined" */}
-                        {post.auteur ?
-                            <Link className="link" to={`/?${post.auteur.username}`}>
-                                <span className="postTitle">{post.auteur.username}</span>
+                        {article.auteur ?
+                            <Link className="link" to={`/?${article.auteur.username}`}>
+                                <span className="postTitle">{article.auteur.username}</span>
                             </Link>
                             : void 0
                         }
                     </span>
-                    <span className="singlePostDate">{post.date}</span>
+                    <span className="singlePostDate">{article.date}</span>
                 </div>
-                <p className="singlePostDesc">{post.contenu}</p>
+                <p className="singlePostDesc">{article.contenu}</p>
             </div>
         </div>
     )
