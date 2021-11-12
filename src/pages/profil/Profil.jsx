@@ -48,7 +48,7 @@ export default function Profil() {
 
     useEffect(() => {
         const modifProfileArticle = () => {
-            window.location.replace("/del/" + username + "/post/" + id2)
+            window.location.replace("/edit/" + username + "/post/" + id2)
         }
         //La ternaire evite de rappeller la fonction quand la valeur d'id passe à null après suppression
         id2 && modifProfileArticle();

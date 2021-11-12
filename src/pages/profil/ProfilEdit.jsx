@@ -89,13 +89,13 @@ export default function ProfilDel() {
                     id="cat-select"
                     defaultValue={fetchArticle.categorie && fetchArticle.categorie.nom}
                     onChange={e => setCategorie(e.target.value)}>
-                    <option value={fetchArticle.categorie && fetchArticle.categorie.nom} selected>
+                    <option defaultValue={fetchArticle.categorie && fetchArticle.categorie.nom} >
                         {
                             fetchArticle.categorie &&
                             fetchArticle.categorie.nom}</option>
                     {
                         categorieListe.map((categorie) => (
-                            <option value={categorie.nom}>{categorie.nom}</option>
+                            <option defaultValue={categorie.nom}>{categorie.nom}</option>
                         ))
                     }
                 </select>
@@ -112,8 +112,8 @@ export default function ProfilDel() {
                         required />
                 </div>
 
-                <div class="form-example">
-                    <input type="submit" value="Modifier" />
+                <div className="form-example">
+                    <input type="submit" defaultValue="Modifier" />
                 </div>
 
             </form>
