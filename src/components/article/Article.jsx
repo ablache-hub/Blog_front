@@ -11,8 +11,7 @@ import { decryptData } from "../../config/utils";
 
 export default function Article() {
     // On récupère l'id dans l'url
-    const location = useLocation();
-    const pathUrl = location.pathname.split("/")[4];
+    const pathUrl = useLocation().pathname.split("/")[4];
     const { token, username } = useContext(Context);
     const [fetchArticle, setFetchArticle] = useState("");
     const [editMode, setEditMode] = useState(false);
@@ -30,8 +29,6 @@ export default function Article() {
                     setCategorie(response.data.categorie.nom);
                     setTitle(response.data.titre);
                     setContenu(response.data.contenu);
-
-
                 })
         }
         getArticle()
@@ -118,21 +115,29 @@ export default function Article() {
                     </>
                     :
                     <>
-                        <form action="" method="get" className="form-example" onSubmit={handleSubmit}>
-                            <div className="form-example">
-                                <label htmlFor="name">Titre: </label>
-                                <input
-                                    defaultValue={fetchArticle.titre}
-                                    type="text"
-                                    name="titre"
-                                    className="titre"
-                                    onChange={e => setTitle(e.target.value)}
-                                    required />
+                        <form action="" method="post" className="update-article" onSubmit={handleSubmit}>
+                            <div className="singlePostTitleInput">
+                                <div>
+                                    <label htmlFor="titre">Titre: </label>
+                                    <input
+                                        defaultValue={fetchArticle.titre}
+                                        type="text"
+                                        name="titre"
+                                        onChange={e => setTitle(e.target.value)}
+                                        required />
+                                </div>
+                                <i className="far fa-times-circle" onClick={()=>         window.location.reload()
+} />
+
                             </div>
 
+                            <label
+                                htmlFor="cat-select">Catégorie:
+                            </label>
                             <select
-                                className="categorie-form"
+                                className="singlePostDate"
                                 id="cat-select"
+                                name="cat-select"
                                 defaultValue={fetchArticle.categorie && fetchArticle.categorie.nom}
                                 onChange={e => setCategorie(e.target.value)}>
                                 <option defaultValue={fetchArticle.categorie && fetchArticle.categorie.nom} >
@@ -149,7 +154,8 @@ export default function Article() {
 
                             <div className="form-example">
                                 <label
-                                    htmlFor="email">Contenu: </label>
+                                    htmlFor="email">Contenu:
+                                </label>
                                 <input
                                     defaultValue={fetchArticle.contenu}
                                     type="text"

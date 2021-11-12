@@ -5,6 +5,8 @@
 .singlePostWrapper {
     padding: 20px;
     padding-right: 0;
+    display: flex;
+    flex-direction:column;
 }
 
 .singlePostImg {
@@ -19,6 +21,20 @@
     margin: 10px;
     font-family: 'Lora', serif;
     font-size: 28px;
+}
+
+.singlePostTitleInput {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+    font-family: 'Lora', serif;
+    font-size: 28px;
+    text-align: center;
+    border: none;
+}
+
+.fa-times-circle {
+    color: red;
 }
 
 .singlePostEdit {
