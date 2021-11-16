@@ -5,19 +5,16 @@ import Header from "../../components/header/Header"
 import ListeArticles from "../../components/listeArticles/ListeArticles"
 import Sidebar from "../../components/sidebar/Sidebar"
 import "./home.css"
-import {encryptData, decryptData} from '../../config/utils'
+import Pagination from "../../config/pagination";
 
 export default function Home() {
 
-    const [fetchArticle, setFetchArticle] = useState([])
+    const [fetchArticle, setFetchArticle] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage, setPostsPerPage] = useState(9);
 
     //Extraction username de l'url pour le fetching API des articles d'un utilisateur précis
     const location = useLocation().search.replace("?", "");
-
-    const encrypt = encryptData("test");
-    const decrypt = decryptData(encrypt);
-    console.log(encrypt);
-    console.log(decrypt);
 
     useEffect(() => {
         const fetchingArticle = async () => {
@@ -45,15 +42,22 @@ export default function Home() {
         fetchingArticle()
     }, [])
 
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPosts = fetchArticle.slice(indexOfFirstPost, indexOfLastPost);
+
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
     return (
         <>
             <Header />
             <div className="home">
                 
-                {fetchArticle ? <ListeArticles listeArticles={fetchArticle} userUrl={location} />
+                {fetchArticle ? <ListeArticles listeArticles={currentPosts} userUrl={location} />
                     :
                     <p>Aucun article</p>
                 }
+                <Pagination postPerPage={postsPerPage} totalPosts={fetchArticle.length} paginate={paginate} />
                 <Sidebar />
             </div>
         </>
