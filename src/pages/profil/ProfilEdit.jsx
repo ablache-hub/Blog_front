@@ -8,11 +8,11 @@ import { decryptData } from '../../config/utils';
 
 export default function ProfilDel() {
     const location = useLocation().pathname.split("/")[4];
-    const [title, setTitle] = useState('');
-    const [contenu, setContenu] = useState('');
     const { token, username } = useContext(Context);
-    const [fetchArticle, setFetchArticle] = useState("")
+    const [fetchArticle, setFetchArticle] = useState([])
     const [categorieListe, setCategorieListe] = useState([]);
+    const [title, setTitle] = useState([]);
+    const [contenu, setContenu] = useState([]);
     const [categorie, setCategorie] = useState([]);
 
     const handleSubmit = async (e) => {
@@ -22,24 +22,28 @@ export default function ProfilDel() {
             titre: title,
             contenu
         }
-
         //Verifie si une caté est bien selectionnée
-            await axios.put("/article/auteur/" + username + "/modify?categorie=" + categorie,
-                newPost,
-                {
-                    headers: { 'Authorization': decryptData(token) }
-                })
+        await axios.put("/article/auteur/" + username + "/modify?categorie=" + categorie,
+            newPost,
+            {
+                headers: { 'Authorization': decryptData(token) }
+            })
+            window.location.replace("/profil/")
     }
+
 
     useEffect(() => {
         const fetchingProfilArticle = async () => {
             await axios.get("/article/get/" + location, { headers: { 'Authorization': decryptData(token) } })
                 .then((response) => {
                     setFetchArticle(response.data);
-                    setCategorie(response.data.categorie.nom)
+                    setCategorie(response.data.categorie.nom);
+                    setTitle(response.data.titre);
+                    setContenu(response.data.contenu);
                 })
         }
-        fetchingProfilArticle()
+        fetchingProfilArticle();
+
 
     }, [])
 
@@ -73,7 +77,7 @@ export default function ProfilDel() {
 
             <form action="" method="get" className="form-example" onSubmit={handleSubmit}>
                 <div className="form-example">
-                    <label for="name">Titre: </label>
+                    <label htmlFor="name">Titre: </label>
                     <input
                         defaultValue={fetchArticle.titre}
                         type="text"
@@ -102,7 +106,7 @@ export default function ProfilDel() {
 
                 <div className="form-example">
                     <label
-                        for="email">Contenu: </label>
+                        htmlFor="email">Contenu: </label>
                     <input
                         defaultValue={fetchArticle.contenu}
                         type="text"

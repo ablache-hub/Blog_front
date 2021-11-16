@@ -1,14 +1,38 @@
+.profil-wrapper {
+    margin-top: 50px;
+    font-family: 'Lora', serif;
+
+}
+
 .contenu {
-    color: red;
+    display: block;
+    width: 30vw;
+    margin-bottom: 20px;
+    margin-top: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 4;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
 }
 
 .article {
-    color: green
+    margin-top: 30px;
+}
+
+h1 {
+    font-weight: 900;
+    font-size:large;
+    width: 100px;
 }
 
 li {
-    color: grey;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+p {
+    margin-left: 10px;
 }

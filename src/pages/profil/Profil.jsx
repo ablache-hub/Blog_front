@@ -56,7 +56,7 @@ export default function Profil() {
     }, [id2])
 
     return (
-        <div>
+        <div className="profil-wrapper">
             {fetchProfil.articles &&
                 fetchProfil.articles.length ?
                 fetchProfil.articles.map((article) =>
@@ -70,10 +70,22 @@ export default function Profil() {
                             id={article.id}
                             onClick={getIdDel}
                         />
-                        <li>Titre: {article.titre}</li>
-                        <li>Date: {article.date}</li>
-                        <li>Categorie: {article.categorie.nom}</li>
-                        <li className="contenu">Contenu: {article.contenu}</li>
+                        <li>
+                            <h1>Titre</h1>
+                            <p>{article.titre}</p>
+                        </li>
+                        <li>
+                            <h1>Date</h1>
+                            <p>{article.date}</p>
+                        </li>
+                        <li>
+                            <h1>Categorie</h1>
+                            <p>{article.categorie.nom}</p>
+                        </li>
+                        <li className="contenu">
+                            <h1>Contenu</h1>
+                            <p>{article.contenu}</p>
+                        </li>
                     </ul>)
                 :
                 <span>Aucun article</span>

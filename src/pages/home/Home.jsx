@@ -11,7 +11,7 @@ export default function Home() {
 
     const [fetchArticle, setFetchArticle] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [postsPerPage, setPostsPerPage] = useState(9);
+    const [postsPerPage] = useState(9);
 
     //Extraction username de l'url pour le fetching API des articles d'un utilisateur précis
     const location = useLocation().search.replace("?", "");
@@ -52,12 +52,16 @@ export default function Home() {
         <>
             <Header />
             <div className="home">
-                
-                {fetchArticle ? <ListeArticles listeArticles={currentPosts} userUrl={location} />
-                    :
-                    <p>Aucun article</p>
-                }
-                <Pagination postPerPage={postsPerPage} totalPosts={fetchArticle.length} paginate={paginate} />
+                <article className="paginate-list">
+                    <Pagination className="pagination" postPerPage={postsPerPage} totalPosts={fetchArticle.length} paginate={paginate} />
+                    {
+                        fetchArticle ?
+                            <ListeArticles listeArticles={currentPosts} userUrl={location} />
+                            :
+                            <p>Aucun article</p>
+                    }
+                    <Pagination className="pagination" postPerPage={postsPerPage} totalPosts={fetchArticle.length} paginate={paginate} />
+                </article>
                 <Sidebar />
             </div>
         </>
