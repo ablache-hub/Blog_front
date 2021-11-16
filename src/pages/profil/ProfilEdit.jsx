@@ -9,11 +9,10 @@ import { decryptData } from '../../config/utils';
 export default function ProfilDel() {
     const location = useLocation().pathname.split("/")[4];
     const { token, username } = useContext(Context);
-    const [fetchArticle, setFetchArticle] = useState([])
     const [categorieListe, setCategorieListe] = useState([]);
-    const [title, setTitle] = useState([]);
-    const [contenu, setContenu] = useState([]);
-    const [categorie, setCategorie] = useState([]);
+    const [title, setTitle] = useState('');
+    const [contenu, setContenu] = useState('');
+    const [categorie, setCategorie] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -28,23 +27,20 @@ export default function ProfilDel() {
             {
                 headers: { 'Authorization': decryptData(token) }
             })
-            window.location.replace("/profil/")
+        window.location.replace("/profil/")
     }
-
 
     useEffect(() => {
         const fetchingProfilArticle = async () => {
             await axios.get("/article/get/" + location, { headers: { 'Authorization': decryptData(token) } })
                 .then((response) => {
-                    setFetchArticle(response.data);
+                    // setFetchArticle(response.data);
                     setCategorie(response.data.categorie.nom);
                     setTitle(response.data.titre);
                     setContenu(response.data.contenu);
                 })
         }
         fetchingProfilArticle();
-
-
     }, [])
 
     useEffect(() => {
@@ -59,27 +55,11 @@ export default function ProfilDel() {
 
     return (
         <div>
-
-            {/* <ul className="article" key={fetchArticle.id}>
-                <i className="singlePostIcon far fa-edit"
-                    id={fetchArticle.id}
-
-                />
-                <i className="singlePostIcon far fa-trash-alt"
-                    id={fetchArticle.id}
-                />
-                <li>Titre: {fetchArticle.titre}</li>
-                <li>Date: {fetchArticle.date}</li>
-                <li>Categorie: {fetchArticle.categorie &&
-                    fetchArticle.categorie.nom}</li>
-                <li className="contenu">Contenu: {fetchArticle.contenu}</li>
-            </ul> */}
-
             <form action="" method="get" className="form-example" onSubmit={handleSubmit}>
                 <div className="form-example">
                     <label htmlFor="name">Titre: </label>
                     <input
-                        defaultValue={fetchArticle.titre}
+                        defaultValue={title}
                         type="text"
                         name="titre"
                         className="titre"
@@ -91,15 +71,14 @@ export default function ProfilDel() {
                 <select
                     className="categorie-form"
                     id="cat-select"
-                    defaultValue={fetchArticle.categorie && fetchArticle.categorie.nom}
+                    defaultValue={categorie}
                     onChange={e => setCategorie(e.target.value)}>
-                    <option defaultValue={fetchArticle.categorie && fetchArticle.categorie.nom} >
-                        {
-                            fetchArticle.categorie &&
-                            fetchArticle.categorie.nom}</option>
+                    <option>
+                        {categorie}
+                    </option>
                     {
                         categorieListe.map((categorie) => (
-                            <option defaultValue={categorie.nom}>{categorie.nom}</option>
+                            <option key={categorie.id} defaultValue={categorie.nom}>{categorie.nom}</option>
                         ))
                     }
                 </select>
@@ -108,7 +87,7 @@ export default function ProfilDel() {
                     <label
                         htmlFor="email">Contenu: </label>
                     <input
-                        defaultValue={fetchArticle.contenu}
+                        defaultValue={contenu}
                         type="text"
                         name="contenu"
                         className="contenu"
