@@ -25,6 +25,8 @@ export default function Login() {
                 type: "LOGIN_SUCESS",
                 payload: res,
             })
+            window.history.replaceState(null, '', '/');
+            window.location.reload()
 
             //   .then(res => {
             //     if (res.headers.authorization) {

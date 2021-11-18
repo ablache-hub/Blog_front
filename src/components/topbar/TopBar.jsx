@@ -1,11 +1,15 @@
 import { Link } from "react-router-dom";
 import "./topbar.css"
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Context } from "../../context/Context";
+import axios from "axios";
+import { decryptData } from "../../config/utils";
 
 
 export default function TopBar() {
     const { token, dispatch } = useContext(Context);
+    const [profilPic, setProfilPic] = useState([]);
+
 
     const handleLogout = () => {
         dispatch({ type: "LOGOUT" })
@@ -16,6 +20,18 @@ export default function TopBar() {
         window.history.replaceState(null, '', '/');
         window.location.reload()
     }
+
+    useEffect(() => {
+        const fetchingProfilPic = async () => {
+            await axios.get("/api/user/myCredentials", { headers: { 'Authorization': decryptData(token) } })
+                .then((response) => {
+                    response.data.profilePicture && setProfilPic(response.data.profilePicture.id);
+                }
+                )
+        }
+        fetchingProfilPic();
+
+    }, [])
 
     return (
         <div className="top">
@@ -45,7 +61,10 @@ export default function TopBar() {
                 {
                     token != null ? (
                         <>
-                            <img className="topImg" src="/assets/profil.jpg" alt=""></img>
+                            <img className="topImg"
+                                src={!profilPic.length == 0 ? "http://localhost:8080/file/getById/" + profilPic : "/assets/profil.png"}
+                                alt=""
+                            />
                             <Link to="/profil" className="linkLogout">PROFIL</Link>
                             <Link to="/" className="linkLogout" onClick={handleLogout}>LOGOUT</Link>
                         </>
