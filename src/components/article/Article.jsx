@@ -74,12 +74,14 @@ export default function Article() {
     // }, [categorie])
 
 
-
     return (
         <div className="singlePost">
             <div className="singlePostWrapper">
                 <img
-                    src="https://cdn.futura-sciences.com/buildsv6/images/wide1920/8/d/6/8d638f7cad_50170753_22048-yuekai-du-grand-banquet-copie.jpg" alt="" className="singlePostImg" />
+                    src={fetchArticle.articlePicture ?
+                        "http://localhost:8080/file/getById/" + fetchArticle.articlePicture.id :
+                        "https://cdn.futura-sciences.com/buildsv6/images/wide1920/8/d/6/8d638f7cad_50170753_22048-yuekai-du-grand-banquet-copie.jpg"}
+                    alt="" className="singlePostImg" />
 
                 {!editMode ?
                     <>
@@ -126,8 +128,8 @@ export default function Article() {
                                         onChange={e => setTitle(e.target.value)}
                                         required />
                                 </div>
-                                <i className="far fa-times-circle" onClick={()=>         window.location.reload()
-} />
+                                <i className="far fa-times-circle" onClick={() => window.location.reload()
+                                } />
 
                             </div>
 

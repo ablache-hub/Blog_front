@@ -57,6 +57,14 @@ export default function Profil() {
 
     return (
         <div className="profil-wrapper">
+            <div className="title">
+                <h1>{fetchProfil.username}</h1>
+                <img 
+                className="pic-profil"
+                src={fetchProfil.profilePicture ? "http://localhost:8080/file/getById/" + fetchProfil.profilePicture.id : "/assets/profil.png"} 
+                alt="" />
+            </div>
+
             {fetchProfil.articles &&
                 fetchProfil.articles.length ?
                 fetchProfil.articles.map((article) =>

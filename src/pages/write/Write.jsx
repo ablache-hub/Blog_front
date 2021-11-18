@@ -82,7 +82,7 @@ export default function Write() {
                         <option value="">--Choisissez une catégorie--</option>
                         {
                             categorieListe.map((categorie) => (
-                                <option value={categorie.nom}>{categorie.nom}</option>
+                                <option key={categorie.id} value={categorie.nom}>{categorie.nom}</option>
                             ))
                         }
                     </select>

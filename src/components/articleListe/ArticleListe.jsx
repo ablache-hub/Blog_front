@@ -6,8 +6,13 @@ export default function ArticleListe(props) {
         <div className="post">
             <img
                 className="postImg"
-                src="https://orgaphenix.com/wp-content/uploads/2020/01/secrets-photo-profil-linkedin.jpeg"
-                alt=""
+                src={props.article.articlePicture ?
+                    "http://localhost:8080/file/getById/" + props.article.articlePicture.id :
+                    "https://orgaphenix.com/wp-content/uploads/2020/01/secrets-photo-profil-linkedin.jpeg"}
+
+                alt={props.article.articlePicture &&
+                    props.article.articlePicture.name
+                }
             />
             <div className="postInfo">
                 <div className="postCats">
