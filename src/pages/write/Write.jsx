@@ -4,8 +4,6 @@ import { Context } from '../../context/Context';
 import axios from "axios";
 import { decryptData } from '../../config/utils'
 
-
-
 export default function Write() {
     const [title, setTitle] = useState('');
     const [contenu, setContenu] = useState('');
