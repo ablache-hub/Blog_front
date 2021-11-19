@@ -39,10 +39,10 @@ export default function Profil() {
                     headers: {
                         'Authorization': decryptData(token),
                         'Content-Type': 'multipart/form-data',
-                        'Boundary': '0340540654654034134'
+                        'Boundary': '03405406fdsdfsdfsdfs54654034134'
                     }
                 });
-            window.location.reload();
+            // window.location.reload();
         }
         //La ternaire evite de rappeller la fonction quand la valeur d'id passe à null après suppression
         postProfilePic();
