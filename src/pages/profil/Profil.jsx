@@ -64,7 +64,7 @@ export default function Profil() {
                     headers: {
                         'Authorization': decryptData(token),
                         'Content-Type': 'multipart/form-data',
-                        'Boundary':'0340540654654034134'
+                        'Boundary': '0340540654654034134'
                     }
                 });
             window.location.reload();
@@ -84,7 +84,7 @@ export default function Profil() {
                     alt="" />
 
                 <label htmlFor="fileInput">
-                    <i className="writeIcon fas fa-plus"></i>
+                    <i className="writeIcon fas fa-plus" />
                 </label>
                 <input
                     type="file"
@@ -107,6 +107,13 @@ export default function Profil() {
                             id={article.id}
                             onClick={getIdDel}
                         />
+                        <i className="far fa-eye"
+                            id={article.id}
+                            onClick={e => window.location.replace("/author/" + username + "/post/" + e.target.id)}
+                        />
+                        {/* http://localhost:3000/author/test_auteur@gmail.com/post/5 */}
+                        {/* window.location.replace("/edit/" + username + "/post/" + id2) */}
+
                         <li>
                             <h1>Titre</h1>
                             <p>{article.titre}</p>
