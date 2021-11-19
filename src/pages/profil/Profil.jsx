@@ -12,7 +12,8 @@ export default function Profil() {
     const { token, username } = useContext(Context);
     const [id, setId] = useState(null);
     const [id2, setId2] = useState(null);
-
+    const [profilePic, setProfilePic] = useState(null);
+    const bodyFormData = new FormData();
 
     useEffect(() => {
         const fetchingProfilArticles = async () => {
@@ -55,15 +56,43 @@ export default function Profil() {
 
     }, [id2])
 
+    useEffect(() => {
+        bodyFormData.append('file', profilePic);
+        const postProfilePic = async () => {
+            await axios.post("/file/user/" + username + "/upload", bodyFormData,
+                {
+                    headers: {
+                        'Authorization': decryptData(token),
+                        'Content-Type': 'multipart/form-data',
+                        'Boundary':'0340540654654034134'
+                    }
+                });
+            window.location.reload();
+        }
+        //La ternaire evite de rappeller la fonction quand la valeur d'id passe à null après suppression
+        postProfilePic();
+
+    }, [profilePic])
+
     return (
         <div className="profil-wrapper">
             <div className="title">
                 <h1>{fetchProfil.username}</h1>
-                <img 
-                className="pic-profil"
-                src={fetchProfil.profilePicture ? "http://localhost:8080/file/getById/" + fetchProfil.profilePicture.id : "/assets/profil.png"} 
-                alt="" />
+                <img
+                    className="pic-profil"
+                    src={fetchProfil.profilePicture ? "http://localhost:8080/file/getById/" + fetchProfil.profilePicture.id : "/assets/profil.png"}
+                    alt="" />
+
+                <label htmlFor="fileInput">
+                    <i className="writeIcon fas fa-plus"></i>
+                </label>
+                <input
+                    type="file"
+                    id="fileInput"
+                    style={{ display: "none" }}
+                    onChange={e => setProfilePic(e.target.files[0])} />
             </div>
+
 
             {fetchProfil.articles &&
                 fetchProfil.articles.length ?

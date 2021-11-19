@@ -29,8 +29,7 @@ export default function TopBar() {
                 }
                 )
         }
-        fetchingProfilPic();
-
+        token && fetchingProfilPic();
     }, [])
 
     return (
