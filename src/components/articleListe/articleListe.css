@@ -34,12 +34,12 @@
     cursor: pointer;
 }
 
-.postDate {
+.postDate, .postAuteur {
     font-family: "Lora", serif;
     font-style: italic;
     font-size: 13px;
     color: #999;
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
 .postDesc {

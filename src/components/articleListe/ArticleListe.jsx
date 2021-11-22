@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import "./articleListe.css"
 
 export default function ArticleListe(props) {
+    console.log(props)
     return (
         <div className="post">
             <img
@@ -30,8 +31,11 @@ export default function ArticleListe(props) {
                         <span className="postTitle">{props.article.titre}</span>
                     </Link>
                 }
-
                 <hr />
+
+                {props.article.auteur &&
+                    <span className="postAuteur">Par: {props.article.auteur.name}</span>
+                }
                 <span className="postDate">{props.article.date}</span>
             </div>
             <p className="postDesc">{props.article.contenu}</p>

@@ -35,6 +35,8 @@ export default function Article() {
         getArticle()
     }, [])
 
+
+    //Fetching catégories (pour l'UPDATE)
     useEffect(() => {
         const fetchingCategories = async () => {
             await axios.get("/api/categorie/getAll")
@@ -45,6 +47,8 @@ export default function Article() {
         fetchingCategories()
     }, [])
 
+
+    //DELETE Article
    const handleDelete = async () => {
         await axios.delete("/article/auteur/" + username + "/delete/" + fetchArticle.id,
             {
@@ -53,23 +57,23 @@ export default function Article() {
         window.location.replace("/")
     }
 
+
+    //UPDATE Article
     const submitUpdate = async (e) => {
         e.preventDefault();
-        const newPost = {
+        const updatedArticle = {
             id: fetchArticle.id,
             titre: title,
             contenu
         }
-        //Verifie si une caté est bien selectionnée
         await axios.put("/article/auteur/" + username + "/modify?categorie=" + categorie,
-            newPost,
+            updatedArticle,
             {
                 headers: { 'Authorization': decryptData(token) }
             })
         window.location.replace("/author/" + username + "/post/" + fetchArticle.id)
 
     }
-
 
     return (
         <div className="singlePost">

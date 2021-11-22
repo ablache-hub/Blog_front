@@ -38,7 +38,6 @@ export default function Write() {
             newArticle.append('categorie', categorie);
             newArticle.append('picture', articlePic);
 
-
             await axios.post("/article/new/",
                 newArticle,
                 {
@@ -52,13 +51,13 @@ export default function Write() {
                 });
         }
     }
-
-    //Après avoir POST, on redirige vers l'article nouvellement crée grâve à l'Id récup dans la reponse
+    //Après POST, on redirige vers l'article nouvellement crée grâve à l'Id récup dans la reponse
     useEffect(() => {
         newId &&
             window.location.replace("/author/" + username + "/post/" + newId);
     }, [newId])
 
+    //Fetch catégorie pour menu
     useEffect(() => {
         const fetchingCategorie = async () => {
             await axios.get("/api/categorie/getAll")
@@ -68,6 +67,17 @@ export default function Write() {
         }
         fetchingCategorie()
     }, [])
+
+    useEffect(() => {
+        error && showErrorPopup(true)
+        setTimeout(() => {
+            showErrorPopup(false)
+        }, 3000);
+    }, [error])
+
+    useEffect(() => {
+       articlePic && setArticlePicUrl(URL.createObjectURL(articlePic))
+    }, [articlePic])
 
 
     // useEffect(() => {
@@ -88,29 +98,10 @@ export default function Write() {
 
     // }, [articlePic])
 
-    useEffect(() => {
-        error && showErrorPopup(true)
-        setTimeout(() => {
-            showErrorPopup(false)
-        }, 3000);
-    }, [error])
-
-    useEffect(() => {
-       articlePic && setArticlePicUrl(URL.createObjectURL(articlePic))
-    }, [articlePic])
-
 
     return (
 
         <div className="write">
-            {/* {errorPopup &&
-                <div className='error'>
-                    {error === 'pic' ? "Veuillez ajouter une image"
-                        : error === 'contenu' ? 'Contenu obligatoire' :
-                            error === 'titre' ? 'Titre requis' :
-                                error === 'categorie' ? 'Veuillez selectionner une catégorie' : void 0}
-                </div>} */}
-
             <img
                 className="writeImg"
                 src= {articlePicUrl ? articlePicUrl : "https://webcolours.ca/wp-content/uploads/2020/10/webcolours-unknown.png"}
@@ -123,8 +114,8 @@ export default function Write() {
                     handleSubmit
                     // :
                     // e => e.preventDefault()
-                }
-            >
+                }>
+                    
                 <div className="writeFormGroup">
                     <label htmlFor="fileInput">
                         <i className="writeIcon fas fa-plus"></i>
