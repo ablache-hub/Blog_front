@@ -75,9 +75,8 @@ export default function Article() {
         <div className="singlePost">
             <div className="singlePostWrapper">
                 <img
-                    src={fetchArticle.articlePicture ?
-                        "http://localhost:8080/file/getById/" + fetchArticle.articlePicture.id :
-                        "https://cdn.futura-sciences.com/buildsv6/images/wide1920/8/d/6/8d638f7cad_50170753_22048-yuekai-du-grand-banquet-copie.jpg"}
+                    src={fetchArticle.articlePicture &&
+                        "http://localhost:8080/file/getById/" + fetchArticle.articlePicture.id}
                     alt="" className="singlePostImg" />
 
                 {!editMode ?

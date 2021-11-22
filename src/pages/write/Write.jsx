@@ -8,16 +8,18 @@ import { decryptData } from '../../config/utils'
 
 export default function Write() {
 
+    const { username, token } = useContext(Context);
+
     const [title, setTitle] = useState(null);
     const [contenu, setContenu] = useState(null);
     const [newId, setnewId] = useState(null);
-    const { username, token } = useContext(Context);
     const [categorieListe, setCategorieListe] = useState([]);
     const [categorie, setCategorie] = useState([]);
     const [articlePic, setArticlePic] = useState(null);
-    const newArticle = new FormData();
+    const [articlePicUrl, setArticlePicUrl] = useState(null);
     const [error, catchError] = useState(null);
     const [errorPopup, showErrorPopup] = useState(false);
+    const newArticle = new FormData();
 
 
     const handleSubmit = async (e) => {
@@ -93,6 +95,11 @@ export default function Write() {
         }, 3000);
     }, [error])
 
+    useEffect(() => {
+       articlePic && setArticlePicUrl(URL.createObjectURL(articlePic))
+    }, [articlePic])
+
+
     return (
 
         <div className="write">
@@ -106,7 +113,8 @@ export default function Write() {
 
             <img
                 className="writeImg"
-                src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/blogs/24132/images/CD4UFNxlQ8GgBMHtv9dR_010-reussir-photo-paysage.jpg" alt="" />
+                src= {articlePicUrl ? articlePicUrl : "https://webcolours.ca/wp-content/uploads/2020/10/webcolours-unknown.png"}
+                 alt="" />
 
             <form className="writeForm"
                 onSubmit={
