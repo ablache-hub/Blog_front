@@ -21,6 +21,7 @@ export default function Article() {
     const [contenu, setContenu] = useState('');
 
 
+    //Fetching des articles de l'utilisateur
     useEffect(() => {
         const getArticle = async () => {
             await axios.get("/article/get/" + pathUrl)
@@ -34,14 +35,6 @@ export default function Article() {
         getArticle()
     }, [])
 
-    const handleDelete = async () => {
-        await axios.delete("/article/auteur/" + username + "/delete/" + fetchArticle.id,
-            {
-                headers: { 'Authorization': decryptData(token) }
-            });
-        window.location.replace("/")
-    }
-
     useEffect(() => {
         const fetchingCategories = async () => {
             await axios.get("/api/categorie/getAll")
@@ -52,7 +45,15 @@ export default function Article() {
         fetchingCategories()
     }, [])
 
-    const handleSubmit = async (e) => {
+   const handleDelete = async () => {
+        await axios.delete("/article/auteur/" + username + "/delete/" + fetchArticle.id,
+            {
+                headers: { 'Authorization': decryptData(token) }
+            });
+        window.location.replace("/")
+    }
+
+    const submitUpdate = async (e) => {
         e.preventDefault();
         const newPost = {
             id: fetchArticle.id,
@@ -68,10 +69,6 @@ export default function Article() {
         window.location.replace("/author/" + username + "/post/" + fetchArticle.id)
 
     }
-
-    // useEffect(() => {
-    //    console.log(categorie)
-    // }, [categorie])
 
 
     return (
@@ -117,7 +114,7 @@ export default function Article() {
                     </>
                     :
                     <>
-                        <form action="" method="post" className="update-article" onSubmit={handleSubmit}>
+                        <form action="" method="post" className="update-article" onSubmit={submitUpdate}>
                             <div className="singlePostTitleInput">
                                 <div>
                                     <label htmlFor="titre">Titre: </label>
@@ -128,7 +125,7 @@ export default function Article() {
                                         onChange={e => setTitle(e.target.value)}
                                         required />
                                 </div>
-                                <i className="far fa-times-circle" onClick={() => window.location.reload()
+                                <i className="far fa-times-circle" onClick={() => setEditMode(false)
                                 } />
 
                             </div>

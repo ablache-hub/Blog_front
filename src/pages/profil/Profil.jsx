@@ -23,14 +23,6 @@ export default function Profil() {
         fetchingProfilArticles()
     }, [])
 
-    const deleteArticle = async (event) => {
-        await axios.delete("/article/auteur/" + username + "/delete/" + event.target.id,
-            {
-                headers: { 'Authorization': decryptData(token) }
-            });
-        window.location.reload();
-    }
-
     useEffect(() => {
         bodyFormData.append('file', profilePic);
         const postProfilePic = async () => {
@@ -42,17 +34,31 @@ export default function Profil() {
                         'Boundary': '03405406fdsdfsdfsdfs54654034134'
                     }
                 });
-            // window.location.reload();
+            window.location.reload();
         }
         //La ternaire evite de rappeller la fonction quand la valeur d'id passe à null après suppression
         postProfilePic();
-
     }, [profilePic])
 
+
+    const deleteArticle = async (event) => {
+        await axios.delete("/article/auteur/" + username + "/delete/" + event.target.id,
+            {
+                headers: { 'Authorization': decryptData(token) }
+            });
+        window.location.reload();
+    }
+
+
+    console.log(fetchProfil)
     return (
         <div className="profil-wrapper">
             <div className="title">
-                <h1>{fetchProfil.username}</h1>
+                <div className="credentials">
+                    <h1>{fetchProfil.username}</h1>
+                    <br />
+                    <h1>{fetchProfil.name}</h1>
+                </div>
                 <img
                     className="pic-profil"
                     src={fetchProfil.profilePicture ? "http://localhost:8080/file/getById/" + fetchProfil.profilePicture.id : "/assets/profil.png"}
@@ -67,7 +73,7 @@ export default function Profil() {
                     style={{ display: "none" }}
                     onChange={e => setProfilePic(e.target.files[0])} />
             </div>
-            
+
             {fetchProfil.articles &&
                 fetchProfil.articles.length ?
                 fetchProfil.articles.map((article) =>
