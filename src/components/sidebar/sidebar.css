@@ -6,6 +6,7 @@
     border-radius: 10px;
     display: flex;
     flex-direction: column;
+    max-width: 20vw;
 }
 
 .sidebarItem {

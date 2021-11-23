@@ -66,6 +66,7 @@ export default function ProfilDel() {
                         className="form-control"
                         onChange={e => setTitle(e.target.value)}
                         required />
+                        
                 </div>
 
                 <div className="input-group mb-3">

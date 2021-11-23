@@ -66,3 +66,9 @@ li {
 p {
     margin-left: 10px;
 }
+
+h1 > p {
+    font-weight:lighter;
+    font-size: medium;
+    margin-bottom: -10px;
+}

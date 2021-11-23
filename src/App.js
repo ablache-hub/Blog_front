@@ -13,7 +13,7 @@ import {
 import Article from "./components/article/Article";
 import { Context } from "./context/Context";
 import Profil from "./pages/profil/Profil";
-import ProfilEdit from "./pages/profil/ProfilEdit";
+import ProfilEdit from "./pages/profil/ProfilArticleEdit";
 
 function App() {
   const {token} = useContext(Context);

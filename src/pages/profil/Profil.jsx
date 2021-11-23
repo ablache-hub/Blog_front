@@ -11,6 +11,8 @@ export default function Profil() {
     const { token, username } = useContext(Context);
     const [fetchProfil, setFetchProfil] = useState([]);
     const [profilePic, setProfilePic] = useState(null);
+    const [edit, setEdit] = useState(false);
+    const [nom, setNom] = useState("");
     const bodyFormData = new FormData();
 
     useEffect(() => {
@@ -49,15 +51,66 @@ export default function Profil() {
         window.location.reload();
     }
 
+    const updateProfil = async (e) => {
+        e.preventDefault();
+        const updatedProfil = {
+            name: nom,
+        }
+        //Verifie si une caté est bien selectionnée
+        await axios.put("/api/user/" + username,
+            updatedProfil,
+            {
+                headers: { 'Authorization': decryptData(token) }
+            })
+            .then((response) => {
+                setFetchProfil(response.data);
+            })
+            .then(setEdit(false))
+    }
 
-    console.log(fetchProfil)
+
+    //UPDATE Article
+    // const updateCredentials = async (e) => {
+    //     e.preventDefault();
+    //     const updatedCredentials = {
+    //         name
+    //     }
+    //     await axios.put("/api/user/" + username,
+    //         updatedArticle,
+    //         {
+    //             headers: { 'Authorization': decryptData(token) }
+    //         })
+    //     window.location.replace("/author/" + username + "/post/" + fetchArticle.id)
+
+    // }
+
+    console.log(nom)
     return (
         <div className="profil-wrapper">
             <div className="title">
                 <div className="credentials">
-                    <h1>{fetchProfil.username}</h1>
+                    <h1>Utilisateur:
+                        <p>{fetchProfil.username}</p></h1>
                     <br />
-                    <h1>{fetchProfil.name}</h1>
+                    {!edit ?
+                        <h1>Nom:
+                            <i className="singlePostIcon far fa-edit" onClick={() => setEdit(true)} />
+
+                            <p>{fetchProfil.name}</p></h1>
+                        :
+                        <div className="input-group mb-3 w-50">
+                            <label className="input-group-text" htmlFor="name" id="basic-addon1">Nom</label>
+                            <input
+                                // defaultValue={title}
+                                type="text"
+                                name="titre"
+                                className="form-control"
+                                onChange={e => setNom(e.target.value)}
+                                required />
+                            <i class="far fa-check-square" onClick={updateProfil} />
+                            <i className="far fa-times-circle" onClick={() => setEdit(false)} />
+                        </div>
+                    }
                 </div>
                 <img
                     className="pic-profil"
