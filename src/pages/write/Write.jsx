@@ -20,6 +20,7 @@ export default function Write() {
     const [error, catchError] = useState(null);
     const [errorPopup, showErrorPopup] = useState(false);
     const newArticle = new FormData();
+    const [hidden, setHidden] = useState(false);
 
 
     const handleSubmit = async (e) => {
@@ -76,7 +77,8 @@ export default function Write() {
     }, [error])
 
     useEffect(() => {
-       articlePic && setArticlePicUrl(URL.createObjectURL(articlePic))
+        articlePic && setArticlePicUrl(URL.createObjectURL(articlePic))
+        console.log(articlePic)
     }, [articlePic])
 
 
@@ -99,13 +101,14 @@ export default function Write() {
     // }, [articlePic])
 
 
+    console.log(categorie)
     return (
 
         <div className="write">
             <img
                 className="writeImg"
-                src= {articlePicUrl ? articlePicUrl : "https://webcolours.ca/wp-content/uploads/2020/10/webcolours-unknown.png"}
-                 alt="" />
+                src={articlePicUrl ? articlePicUrl : "https://webcolours.ca/wp-content/uploads/2020/10/webcolours-unknown.png"}
+                alt="" />
 
             <form className="writeForm"
                 onSubmit={
@@ -115,7 +118,7 @@ export default function Write() {
                     // :
                     // e => e.preventDefault()
                 }>
-                    
+
                 <div className="writeFormGroup">
                     <label htmlFor="fileInput">
                         <i className="writeIcon fas fa-plus"></i>
@@ -158,6 +161,8 @@ export default function Write() {
                     </select>
                 </div>
 
+
+            
                 {errorPopup &&
                     error === 'contenu' && <div className='error'>Contenu requis</div>
                 }
