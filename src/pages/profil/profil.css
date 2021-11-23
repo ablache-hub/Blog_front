@@ -8,6 +8,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    margin-bottom: 50px;
 }
 
 .pic-profil {
@@ -18,24 +19,41 @@
 }
 
 .contenu {
-    display: block;
+    /* display: block;
     width: 30vw;
     margin-bottom: 20px;
-    margin-top: 5px;
+     margin-top: 5px;
     overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
+     text-overflow: ellipsis;
+     display: -webkit-box;
     -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
+    -webkit-box-orient: vertical;  */
+
+    height:50px;
+    width: 50vw;
+    /* margin-right: -200px; */
 }
 
 .article {
     margin-top: 30px;
 }
 
+.input-group, .btn {
+    margin-left: 50px;
+}
+
+.btn {
+    margin-top: 50px;
+}
+
 h1 {
     font-weight: bold;
-    font-size: large;
+    font-size: large;    
+}
+
+.edit-title {
+    margin: 50px 0 50px 100px;
+
 }
 
 li {

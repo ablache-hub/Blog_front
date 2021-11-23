@@ -73,43 +73,86 @@ export default function Profil() {
                     style={{ display: "none" }}
                     onChange={e => setProfilePic(e.target.files[0])} />
             </div>
+            <table className="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Titre</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Catégorie</th>
+                        <th scope="col">Contenu</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {fetchProfil.articles &&
+                        fetchProfil.articles.length ?
+                        fetchProfil.articles.map((article) =>
+                            <tr key={article.id}>
 
-            {fetchProfil.articles &&
-                fetchProfil.articles.length ?
-                fetchProfil.articles.map((article) =>
-                    <ul className="article" key={article.id}>
-                        <i className="singlePostIcon far fa-edit"
-                            id={article.id}
-                            onClick={e => window.location.replace("/edit/" + username + "/post/" + e.target.id)}
-                        />
-                        <i className="singlePostIcon far fa-trash-alt"
-                            id={article.id}
-                            onClick={e => deleteArticle(e)}
-                        />
-                        <i className="far fa-eye"
-                            id={article.id}
-                            onClick={e => window.location.replace("/author/" + username + "/post/" + e.target.id)}
-                        />
-                        <li>
-                            <h1>Titre</h1>
-                            <p>{article.titre}</p>
-                        </li>
-                        <li>
-                            <h1>Date</h1>
-                            <p>{article.date}</p>
-                        </li>
-                        <li>
-                            <h1>Categorie</h1>
-                            <p>{article.categorie.nom}</p>
-                        </li>
-                        <li className="contenu">
-                            <h1>Contenu</h1>
-                            <p>{article.contenu}</p>
-                        </li>
-                    </ul>)
-                :
-                <span>Aucun article</span>
-            }
+                                <th scope="row">{article.titre}</th>
+                                <td>{article.date}</td>
+                                <td>{article.categorie.nom}</td>
+                                <td>
+                                    <p className="contenu overflow-auto">{article.contenu}</p>
+                                </td>
+                                <td> <i className="singlePostIcon far fa-edit"
+                                    id={article.id}
+                                    onClick={e => window.location.replace("/edit/" + username + "/post/" + e.target.id)}
+                                />
+                                    <i className="singlePostIcon far fa-trash-alt"
+                                        id={article.id}
+                                        onClick={e => deleteArticle(e)}
+                                    />
+                                    <i className="far fa-eye"
+                                        id={article.id}
+                                        onClick={e => window.location.replace("/author/" + username + "/post/" + e.target.id)}
+                                    /></td>
+                            </tr>
+                        )
+                        :
+                        <span>Aucun article</span>
+                    }
+                </tbody>
+
+
+                {/* 
+                {fetchProfil.articles &&
+                    fetchProfil.articles.length ?
+                    fetchProfil.articles.map((article) =>
+                        <ul className="article" key={article.id}>
+                            <i className="singlePostIcon far fa-edit"
+                                id={article.id}
+                                onClick={e => window.location.replace("/edit/" + username + "/post/" + e.target.id)}
+                            />
+                            <i className="singlePostIcon far fa-trash-alt"
+                                id={article.id}
+                                onClick={e => deleteArticle(e)}
+                            />
+                            <i className="far fa-eye"
+                                id={article.id}
+                                onClick={e => window.location.replace("/author/" + username + "/post/" + e.target.id)}
+                            />
+                            <li>
+                                <h1>Titre</h1>
+                                <p>{article.titre}</p>
+                            </li>
+                            <li>
+                                <h1>Date</h1>
+                                <p>{article.date}</p>
+                            </li>
+                            <li>
+                                <h1>Categorie</h1>
+                                <p>{article.categorie.nom}</p>
+                            </li>
+                            <li className="contenu">
+                                <h1>Contenu</h1>
+                                <p>{article.contenu}</p>
+                            </li>
+                        </ul>)
+                    :
+                    <span>Aucun article</span>
+                } */}
+            </table>
         </div>
     )
 }

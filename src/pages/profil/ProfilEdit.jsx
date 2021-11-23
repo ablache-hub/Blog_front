@@ -56,49 +56,53 @@ export default function ProfilDel() {
     return (
         <div>
             <form action="" method="get" className="form-example" onSubmit={handleSubmit}>
-                <div className="form-example">
-                    <label htmlFor="name">Titre: </label>
+                <h1 className="edit-title">Edition Article</h1>
+                <div className="input-group mb-3 w-50">
+                    <label className="input-group-text" htmlFor="name" id="basic-addon1">Titre</label>
                     <input
                         defaultValue={title}
                         type="text"
                         name="titre"
-                        className="titre"
+                        className="form-control"
                         onChange={e => setTitle(e.target.value)}
                         required />
                 </div>
 
-                <label className="categorie-label" htmlFor="cat-select">Catégorie</label>
-                <select
-                    className="categorie-form"
-                    id="cat-select"
-                    defaultValue={categorie}
-                    onChange={e => setCategorie(e.target.value)}>
-                    <option>
-                        {categorie}
-                    </option>
-                    {
-                        categorieListe.map((categorie) => (
-                            <option key={categorie.id} defaultValue={categorie.nom}>{categorie.nom}</option>
-                        ))
-                    }
-                </select>
+                <div className="input-group mb-3">
+                    <label className="input-group-text" htmlFor="cat-select" id="basic-addon1">Catégorie</label>
+                    <select
+                        className="categorie-form"
+                        id="cat-select"
+                        defaultValue={categorie}
+                        onChange={e => setCategorie(e.target.value)}>
+                        <option>
+                            {categorie}
+                        </option>
+                        {
+                            categorieListe.map((categorie) => (
+                                <option key={categorie.id} defaultValue={categorie.nom}>{categorie.nom}</option>
+                            ))
+                        }
+                    </select>
+                </div>
 
-                <div className="form-example">
+                <div className="input-group w-50">
                     <label
-                        htmlFor="email">Contenu: </label>
-                    <input
+                        htmlFor="email"
+                        className="input-group-text">Contenu: </label>
+                    <textarea
                         defaultValue={contenu}
                         type="text"
                         name="contenu"
-                        className="contenu"
+                        className="form-control"
                         onChange={e => setContenu(e.target.value)}
                         required />
                 </div>
 
-                <div className="form-example">
-                    <input type="submit" defaultValue="Modifier" />
-                </div>
 
+                <div >
+                    <input className="btn btn-info" type="submit" defaultValue="Modifier" />
+                </div>
             </form>
 
 

@@ -147,24 +147,7 @@ export default function Write() {
                     {errorPopup &&
                         error === 'categorie' && <div className='error'>Veuillez choisir une catégorie</div>
                     }
-                    <div class="dropdown">
-                        <label className="categorie-label" htmlFor="cat-select">Catégorie</label>
-                        <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {categorie.length ? categorie : "Veuillez choisir une catégorie"}
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" required >
-                            {
-                                categorieListe.map((categorie) => (
-                                    <option onClick={e => setCategorie(e.target.value)} key={categorie.id} value={categorie.nom}>{categorie.nom}</option>
-                                ))
-                            }
-                        </div>
-                    </div>
-
-                    {
-                    // Dropdown sans Boostrap
-
-                    /* <label className="categorie-label" htmlFor="cat-select">Catégorie</label>
+                    <label className="categorie-label" htmlFor="cat-select">Catégorie</label>
                     <select
                         className="categorie-form"
                         id="cat-select"
@@ -175,7 +158,7 @@ export default function Write() {
                                 <option key={categorie.id} value={categorie.nom}>{categorie.nom}</option>
                             ))
                         }
-                    </select> */}
+                    </select>
                 </div>
 
 
