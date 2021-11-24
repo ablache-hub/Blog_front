@@ -194,10 +194,14 @@ export default function Profil() {
                                 <td>
                                     <p className="contenu overflow-auto">{article.contenu}</p>
                                 </td>
-                                <td>
+                                <td className="articlePictureList">
                                     {<img
-                                        src={article.articlePicture ? "http://localhost:8080/file/getById/" + article.articlePicture.id : void 0}
-                                        alt="" className="singlePostImgProfil" />
+                                        src={article.articlePicture ?
+                                            "http://localhost:8080/file/getById/" + article.articlePicture.id
+                                            :
+                                            "https://orgaphenix.com/wp-content/uploads/2020/01/secrets-photo-profil-linkedin.jpeg"}
+                                        alt="" 
+                                        className="singlePostImgProfil" />
                                     }
                                     <label htmlFor={article.id}>
                                         <i className="writeIcon fas fa-plus fileInputArticle" />

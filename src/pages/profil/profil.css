@@ -46,17 +46,29 @@
     margin-top: 50px;
 }
 
+.articlePictureList {
+    display: flex;
+    align-items: center;
+    border: none;
+}
+
 .singlePostImgProfil {
     max-height: 50px;
+    /* width: 100%; */
+
 }
 
 .fileInputArticle {
-    position: absolute;
-    margin-left: -60px; 
-    margin-top: -8px;
+   /* left: 45px;
+    bottom: 40px; */
     color: coral;
     background-color: cornsilk;
+    margin-left: -220%;
+    margin-top: 50%;
+
 }
+
+
 
 h1 {
     font-weight: bold;

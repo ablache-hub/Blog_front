@@ -25,11 +25,18 @@ export default function Write() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!articlePic) {
+
+        if (!title || !contenu || !categorie.length) {
+            !title && catchError('titre')
+            !contenu && catchError('contenu')
+            !categorie.length && catchError('categorie')
+        }
+        else {
             newArticle.append('username', username)
             newArticle.append('titre', title);
             newArticle.append('contenu', contenu);
             newArticle.append('categorie', categorie);
+            articlePic && newArticle.append('picture', articlePic);
 
             await axios.post("/article/new/",
                 newArticle,
@@ -42,34 +49,9 @@ export default function Write() {
                 }).then((response) => {
                     setnewId(response.data.id);
                 });
-        } else {
-
-            if (!title || !contenu || !categorie.length) {
-                !title && catchError('titre')
-                !contenu && catchError('contenu')
-                !categorie.length && catchError('categorie')
-            }
-            else {
-                newArticle.append('username', username)
-                newArticle.append('titre', title);
-                newArticle.append('contenu', contenu);
-                newArticle.append('categorie', categorie);
-                newArticle.append('picture', articlePic);
-
-                await axios.post("/article/new/",
-                    newArticle,
-                    {
-                        headers: {
-                            'Authorization': decryptData(token),
-                            'Content-Type': 'multipart/form-data',
-                            'Boundary': '0340540654654034134'
-                        }
-                    }).then((response) => {
-                        setnewId(response.data.id);
-                    });
-            };
-        }
+        };
     }
+    // }
     //Après POST, on redirige vers l'article nouvellement crée grâve à l'Id récup dans la reponse
     useEffect(() => {
         newId &&
@@ -126,47 +108,44 @@ export default function Write() {
                 alt="" />
 
             <form className="writeForm"
-                onSubmit={
-                    // articlePic &&
-                    //     categorie.length > 0 ?
-                    handleSubmit
-                    // :
-                    // e => e.preventDefault()
-                }>
+                onSubmit={handleSubmit}>
 
                 <div className="writeFormGroup">
                     <label htmlFor="fileInput">
                         <i className="writeIcon fas fa-plus"></i>
                     </label>
 
-                    {errorPopup &&
+                    {/* {errorPopup &&
                         error === 'pic' && <div className='error'>Veuillez ajouter une image</div>
-                    }
+                    } */}
                     <input
                         type="file"
                         id="fileInput"
                         onChange={e => setArticlePic(e.target.files[0])}
                         style={{ display: "none" }} />
 
-                    {errorPopup &&
+                    {/* {errorPopup &&
                         error === 'titre' && <div className='error'>Titre requis</div>
-                    }
+                    } */}
                     <input
                         type="text"
                         placeholder="Titre article"
                         className="writeInput"
                         autoFocus={true}
-                        onChange={e => setTitle(e.target.value)}
+                        onChange={e => (setTitle(e.target.value))}
+                        required
                     />
 
-                    {errorPopup &&
+                    {/* {errorPopup &&
                         error === 'categorie' && <div className='error'>Veuillez choisir une catégorie</div>
-                    }
+                    } */}
                     <label className="categorie-label" htmlFor="cat-select">Catégorie</label>
                     <select
                         className="categorie-form"
                         id="cat-select"
-                        onChange={e => setCategorie(e.target.value)}>
+                        onChange={e => setCategorie(e.target.value)}
+                        required
+                        >
                         <option value="">--Choisissez une catégorie--</option>
                         {
                             categorieListe.map((categorie) => (
@@ -178,9 +157,9 @@ export default function Write() {
 
 
 
-                {errorPopup &&
+                {/* {errorPopup &&
                     error === 'contenu' && <div className='error'>Contenu requis</div>
-                }
+                } */}
                 <div className="writeFormGroup">
 
                     <textarea
@@ -188,7 +167,7 @@ export default function Write() {
                         type="text"
                         className="writeInput writeText"
                         onChange={e => setContenu(e.target.value)}
-
+                        required
                     />
                 </div>
                 <button className="writeSubmit" type='submit'>Publier</button>
