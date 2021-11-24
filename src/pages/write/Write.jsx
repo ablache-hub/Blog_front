@@ -24,20 +24,12 @@ export default function Write() {
 
 
     const handleSubmit = async (e) => {
-
         e.preventDefault();
-        if (!articlePic || !title || !contenu || !categorie.length) {
-            !articlePic && catchError('pic')
-            !title && catchError('titre')
-            !contenu && catchError('contenu')
-            !categorie.length && catchError('categorie')
-        }
-        else {
+        if (!articlePic) {
             newArticle.append('username', username)
             newArticle.append('titre', title);
             newArticle.append('contenu', contenu);
             newArticle.append('categorie', categorie);
-            newArticle.append('picture', articlePic);
 
             await axios.post("/article/new/",
                 newArticle,
@@ -50,6 +42,32 @@ export default function Write() {
                 }).then((response) => {
                     setnewId(response.data.id);
                 });
+        } else {
+
+            if (!title || !contenu || !categorie.length) {
+                !title && catchError('titre')
+                !contenu && catchError('contenu')
+                !categorie.length && catchError('categorie')
+            }
+            else {
+                newArticle.append('username', username)
+                newArticle.append('titre', title);
+                newArticle.append('contenu', contenu);
+                newArticle.append('categorie', categorie);
+                newArticle.append('picture', articlePic);
+
+                await axios.post("/article/new/",
+                    newArticle,
+                    {
+                        headers: {
+                            'Authorization': decryptData(token),
+                            'Content-Type': 'multipart/form-data',
+                            'Boundary': '0340540654654034134'
+                        }
+                    }).then((response) => {
+                        setnewId(response.data.id);
+                    });
+            };
         }
     }
     //Après POST, on redirige vers l'article nouvellement crée grâve à l'Id récup dans la reponse
@@ -99,8 +117,6 @@ export default function Write() {
 
     // }, [articlePic])
 
-
-    console.log(categorie)
     return (
 
         <div className="write">
@@ -161,7 +177,7 @@ export default function Write() {
                 </div>
 
 
-            
+
                 {errorPopup &&
                     error === 'contenu' && <div className='error'>Contenu requis</div>
                 }

@@ -196,7 +196,7 @@ export default function Profil() {
                                 </td>
                                 <td>
                                     {<img
-                                        src={"http://localhost:8080/file/getById/" + article.articlePicture.id}
+                                        src={article.articlePicture ? "http://localhost:8080/file/getById/" + article.articlePicture.id : void 0}
                                         alt="" className="singlePostImgProfil" />
                                     }
                                     <label htmlFor={article.id}>

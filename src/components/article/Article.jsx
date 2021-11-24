@@ -79,8 +79,8 @@ export default function Article() {
         <div className="singlePost">
             <div className="singlePostWrapper">
                 <img
-                    src={fetchArticle.articlePicture &&
-                        "http://localhost:8080/file/getById/" + fetchArticle.articlePicture.id}
+                    src={fetchArticle.articlePicture ?
+                        "http://localhost:8080/file/getById/" + fetchArticle.articlePicture.id : "https://orgaphenix.com/wp-content/uploads/2020/01/secrets-photo-profil-linkedin.jpeg"}
                     alt="" className="singlePostImg" />
 
                 {!editMode ?
