@@ -55,17 +55,15 @@ export default function Profil() {
     // Update image profile
     const updateArticlePic = async (event) => {
         bodyFormData.append('file', event.target.files[0]);
-            await axios.post("/file/article/" + event.target.id + "/upload", bodyFormData,
-                {
-                    headers: {
-                        'Authorization': decryptData(token),
-                        'Content-Type': 'multipart/form-data',
-                        'Boundary': '03405406fdsdfsdfsdfs54654034134'
-                    }
-                })
-                
-                ;
-                window.location.reload();
+        await axios.post("/file/article/" + event.target.id + "/upload", bodyFormData,
+            {
+                headers: {
+                    'Authorization': decryptData(token),
+                    'Content-Type': 'multipart/form-data',
+                    'Boundary': '03405406fdsdfsdfsdfs54654034134'
+                }
+            });
+        window.location.reload();
     }
 
     // DELETE Article
