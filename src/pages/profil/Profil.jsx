@@ -11,10 +11,15 @@ export default function Profil() {
     const { token, username } = useContext(Context);
     const [fetchProfil, setFetchProfil] = useState([]);
     const [profilePic, setProfilePic] = useState(null);
+    // const [articlePic, setArticlePic] = useState(null);
+    // const [articleID, setArticleId] = useState(null);
     const [edit, setEdit] = useState(false);
     const [nom, setNom] = useState("");
+    const [user, setUser] = useState("");
     const bodyFormData = new FormData();
 
+
+    // Fetch liste article de l'user
     useEffect(() => {
         const fetchingProfilArticles = async () => {
             await axios.get("/api/user/myCredentials", { headers: { 'Authorization': decryptData(token) } })
@@ -25,6 +30,8 @@ export default function Profil() {
         fetchingProfilArticles()
     }, [])
 
+
+    // POST image profile
     useEffect(() => {
         bodyFormData.append('file', profilePic);
         const postProfilePic = async () => {
@@ -38,11 +45,30 @@ export default function Profil() {
                 });
             window.location.reload();
         }
-        //La ternaire evite de rappeller la fonction quand la valeur d'id passe à null après suppression
-        postProfilePic();
+        //La ternaire evite d'appeller la fonction au chargement
+        profilePic && postProfilePic();
+        setProfilePic(null);
+        bodyFormData.delete('file');
     }, [profilePic])
 
 
+    // Update image profile
+    const updateArticlePic = async (event) => {
+        bodyFormData.append('file', event.target.files[0]);
+            await axios.post("/file/article/" + event.target.id + "/upload", bodyFormData,
+                {
+                    headers: {
+                        'Authorization': decryptData(token),
+                        'Content-Type': 'multipart/form-data',
+                        'Boundary': '03405406fdsdfsdfsdfs54654034134'
+                    }
+                })
+                
+                ;
+                window.location.reload();
+    }
+
+    // DELETE Article
     const deleteArticle = async (event) => {
         await axios.delete("/article/auteur/" + username + "/delete/" + event.target.id,
             {
@@ -51,10 +77,12 @@ export default function Profil() {
         window.location.reload();
     }
 
+    // Update credentials
     const updateProfil = async (e) => {
         e.preventDefault();
         const updatedProfil = {
-            name: nom,
+            // username: user && user,
+            name: nom
         }
         //Verifie si une caté est bien selectionnée
         await axios.put("/api/user/" + username,
@@ -67,7 +95,6 @@ export default function Profil() {
             })
             .then(setEdit(false))
     }
-
 
     //UPDATE Article
     // const updateCredentials = async (e) => {
@@ -83,33 +110,52 @@ export default function Profil() {
     //     window.location.replace("/author/" + username + "/post/" + fetchArticle.id)
 
     // }
-
-    console.log(nom)
     return (
         <div className="profil-wrapper">
             <div className="title">
                 <div className="credentials">
-                    <h1>Utilisateur:
-                        <p>{fetchProfil.username}</p></h1>
-                    <br />
-                    {!edit ?
-                        <h1>Nom:
-                            <i className="singlePostIcon far fa-edit" onClick={() => setEdit(true)} />
 
-                            <p>{fetchProfil.name}</p></h1>
+                    {!edit ?
+                        <>
+                            <h1>Utilisateur:
+                                {/* <i className="singlePostIcon far fa-edit" onClick={() => setEdit(true)} /> */}
+                                <p>{fetchProfil.username}</p></h1>
+                            <br />
+                            <h1>Nom:
+                                <i className="singlePostIcon far fa-edit" onClick={() => setEdit(true)} />
+
+                                <p>{fetchProfil.name}</p></h1>
+                        </>
                         :
-                        <div className="input-group mb-3 w-50">
-                            <label className="input-group-text" htmlFor="name" id="basic-addon1">Nom</label>
-                            <input
-                                // defaultValue={title}
-                                type="text"
-                                name="titre"
-                                className="form-control"
-                                onChange={e => setNom(e.target.value)}
-                                required />
-                            <i class="far fa-check-square" onClick={updateProfil} />
-                            <i className="far fa-times-circle" onClick={() => setEdit(false)} />
-                        </div>
+                        <>
+                            {/* Edit username */}
+                            {/* <div className="input-group mb-3 w-75">
+                                <label className="input-group-text" htmlFor="name" id="basic-addon1">Utilisateur</label>
+                                <input
+                                    // defaultValue={title}
+                                    type="text"
+                                    name="user"
+                                    className="form-control"
+                                    onChange={e => setUser(e.target.value)}
+                                    required />
+                                <i class="far fa-check-square" onClick={updateProfil} />
+                                <i className="far fa-times-circle" onClick={() => setEdit(false)} />
+                            </div> */}
+
+                            {/* Edit nom */}
+                            <div className="input-group mb-3 w-75">
+                                <label className="input-group-text" htmlFor="name" id="basic-addon1">Nom</label>
+                                <input
+                                    // defaultValue={title}
+                                    type="text"
+                                    name="nom"
+                                    className="form-control"
+                                    onChange={e => setNom(e.target.value)}
+                                    required />
+                                <i class="far fa-check-square" onClick={updateProfil} />
+                                <i className="far fa-times-circle" onClick={() => setEdit(false)} />
+                            </div>
+                        </>
                     }
                 </div>
                 <img
@@ -124,7 +170,8 @@ export default function Profil() {
                     type="file"
                     id="fileInput"
                     style={{ display: "none" }}
-                    onChange={e => setProfilePic(e.target.files[0])} />
+                    onChange={e => setProfilePic(e.target.files[0])}
+                />
             </div>
             <table className="table">
                 <thead>
@@ -133,6 +180,7 @@ export default function Profil() {
                         <th scope="col">Date</th>
                         <th scope="col">Catégorie</th>
                         <th scope="col">Contenu</th>
+                        <th scope="col">Image</th>
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
@@ -148,6 +196,23 @@ export default function Profil() {
                                 <td>
                                     <p className="contenu overflow-auto">{article.contenu}</p>
                                 </td>
+                                <td>
+                                    {<img
+                                        src={"http://localhost:8080/file/getById/" + article.articlePicture.id}
+                                        alt="" className="singlePostImgProfil" />
+                                    }
+                                    <label htmlFor={article.id}>
+                                        <i className="writeIcon fas fa-plus fileInputArticle" />
+                                    </label>
+                                    <input
+                                        type="file"
+                                        id={article.id}
+                                        style={{ display: "none" }}
+                                        onChange={
+                                            e => updateArticlePic(e)
+                                        }
+                                    />
+                                </td>
                                 <td> <i className="singlePostIcon far fa-edit"
                                     id={article.id}
                                     onClick={e => window.location.replace("/edit/" + username + "/post/" + e.target.id)}
@@ -159,7 +224,8 @@ export default function Profil() {
                                     <i className="far fa-eye"
                                         id={article.id}
                                         onClick={e => window.location.replace("/author/" + username + "/post/" + e.target.id)}
-                                    /></td>
+                                    />
+                                </td>
                             </tr>
                         )
                         :

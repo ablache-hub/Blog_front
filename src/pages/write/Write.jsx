@@ -15,7 +15,7 @@ export default function Write() {
     const [newId, setnewId] = useState(null);
     const [categorieListe, setCategorieListe] = useState([]);
     const [categorie, setCategorie] = useState([]);
-    const [articlePic, setArticlePic] = useState(null);
+    const [articlePic, setArticlePic] = useState([]);
     const [articlePicUrl, setArticlePicUrl] = useState(null);
     const [error, catchError] = useState(null);
     const [errorPopup, showErrorPopup] = useState(false);
@@ -77,7 +77,7 @@ export default function Write() {
     }, [error])
 
     useEffect(() => {
-        articlePic && setArticlePicUrl(URL.createObjectURL(articlePic))
+        articlePic.length && setArticlePicUrl(URL.createObjectURL(articlePic))
         console.log(articlePic)
     }, [articlePic])
 
