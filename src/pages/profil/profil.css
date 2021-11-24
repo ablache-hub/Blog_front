@@ -47,9 +47,8 @@
 }
 
 .articlePictureList {
-    display: flex;
-    align-items: center;
-    border: none;
+    /* display: flex;
+    border: none; */
 }
 
 .singlePostImgProfil {
@@ -67,8 +66,6 @@
     margin-top: 50%;
 
 }
-
-
 
 h1 {
     font-weight: bold;
