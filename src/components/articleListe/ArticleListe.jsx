@@ -31,12 +31,10 @@ export default function ArticleListe(props) {
                         <span className="postTitle">{props.article.titre}</span>
                     </Link>
                 }
-                <hr />
-
                 {props.article.auteur &&
                     <span className="postAuteur">Par: {props.article.auteur.name}</span>
                 }
-                <span className="postDate">{props.article.date}</span>
+                <span className="postDate">{props.article.date.slice(0, -7)}</span>
             </div>
             <p className="postDesc">{props.article.contenu}</p>
         </div>

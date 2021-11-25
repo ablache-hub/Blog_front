@@ -22,7 +22,6 @@
     color: coral;
     line-height: 20px;
     margin-top: 20px;
-    margin-right: 10px;
     cursor: pointer;
 }
 
@@ -30,7 +29,6 @@
     font-family: "Josefin Sans", sans-serif;
     font-size: 24px;
     font-weight: 700;
-    margin-top: 15px;
     cursor: pointer;
 }
 
@@ -39,7 +37,7 @@
     font-style: italic;
     font-size: 13px;
     color: #999;
-    margin-top: 10px;
+    /* margin-top: 10px; */
 }
 
 .postDesc {
