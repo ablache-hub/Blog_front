@@ -9,6 +9,7 @@
     justify-content: center;
     align-items: center;
     margin-bottom: 50px;
+    margin-left: 50px;
 }
 
 .pic-profil {
@@ -17,6 +18,42 @@
     object-fit: cover;
     margin-left: 50px;
 }
+
+.deleteUser {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 50px;
+}
+
+.deleteUser > i {
+    color: crimson;
+    cursor: pointer;
+}
+
+.deletePopup {
+    display: flex;
+    flex-direction: column;
+}
+
+.popupTitle {
+    text-align: center;
+    margin: 0 0 -30px 50px;
+    padding: 0;
+
+}
+
+.deleteButtons {
+    display: flex;
+    flex-direction: row;
+}
+
+.deletePopup > .btn {
+    font-size: 12px;
+    border-radius: 10px;
+    width:30%;
+ }
 
 .contenu {
     /* display: block;

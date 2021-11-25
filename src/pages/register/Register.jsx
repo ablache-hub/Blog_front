@@ -8,8 +8,8 @@ import axios from 'axios';
 
 
 export default function Register() {
-    const userRef = useRef();
     const emailRef = useRef();
+    const pseudoRef = useRef();
     const passwordRef = useRef();
     const [successNewUser, setSuccessNewUser] = useState(null);
     const { dispatch, isFetching } = useContext(Context)
@@ -20,7 +20,8 @@ export default function Register() {
         e.preventDefault();
         try {
             await axios.post("/api/user/subscribe", {
-                username: userRef.current.value,
+                username: emailRef.current.value,
+                name: pseudoRef.current.value,
                 password: passwordRef.current.value,
             }).then((response) =>
                 response.status == 201 && setSuccessNewUser(response.data.username)
@@ -36,7 +37,7 @@ export default function Register() {
             dispatch({ type: "LOGIN_START" });
             try {
                 const res = await axios.post("/login", {
-                    username: userRef.current.value,
+                    username: emailRef.current.value,
                     password: passwordRef.current.value,
                 })
                 res.headers.authorization = encryptData(res.headers.authorization);
@@ -58,20 +59,20 @@ export default function Register() {
             <span className="registerTitle">Register</span>
             <form className="registerForm" onSubmit={handleSubmit}>
 
-                <label>Username</label>
-                <input
-                    type="text"
-                    className="registerInput"
-                    placeholder="Entrez votre nom d'utilisateur"
-                    ref={userRef}
-                    required />
-
                 <label>Email</label>
                 <input
                     type="text"
                     className="registerInput"
                     placeholder="Entrez votre email"
                     ref={emailRef}
+                    required />
+
+                <label>Pseudo</label>
+                <input
+                    type="text"
+                    className="registerInput"
+                    placeholder="Entrez votre nom d'utilisateur"
+                    ref={pseudoRef}
                     required />
 
                 <label>Password</label>

@@ -8,12 +8,13 @@ import { decryptData } from '../../config/utils'
 
 
 export default function Profil() {
-    const { token, username } = useContext(Context);
+    const { token, username, dispatch } = useContext(Context);
     const [fetchProfil, setFetchProfil] = useState([]);
     const [profilePic, setProfilePic] = useState(null);
     // const [articlePic, setArticlePic] = useState(null);
     // const [articleID, setArticleId] = useState(null);
     const [edit, setEdit] = useState(false);
+    const [showDeleteAlert, setShowDeleteAlert] = useState(false);
     const [nom, setNom] = useState("");
     const [user, setUser] = useState("");
     const bodyFormData = new FormData();
@@ -94,6 +95,15 @@ export default function Profil() {
             .then(setEdit(false))
     }
 
+    const deleteAccount = async () => {
+        await axios.delete("/api/user/delete",
+            {
+                headers: { 'Authorization': decryptData(token) }
+            });
+            dispatch({ type: "LOGOUT" })
+            // window.location.replace("/");
+    }
+
     //UPDATE Article
     // const updateCredentials = async (e) => {
     //     e.preventDefault();
@@ -108,18 +118,18 @@ export default function Profil() {
     //     window.location.replace("/author/" + username + "/post/" + fetchArticle.id)
 
     // }
+
     return (
         <div className="profil-wrapper">
             <div className="title">
                 <div className="credentials">
-
                     {!edit ?
                         <>
-                            <h1>Utilisateur:
+                            <h1>Email/Username:
                                 {/* <i className="singlePostIcon far fa-edit" onClick={() => setEdit(true)} /> */}
                                 <p>{fetchProfil.username}</p></h1>
                             <br />
-                            <h1>Nom:
+                            <h1>Pseudonyme:
                                 <i className="singlePostIcon far fa-edit" onClick={() => setEdit(true)} />
 
                                 <p>{fetchProfil.name}</p></h1>
@@ -170,6 +180,23 @@ export default function Profil() {
                     style={{ display: "none" }}
                     onChange={e => setProfilePic(e.target.files[0])}
                 />
+                <div className="deleteUser">
+                    {!showDeleteAlert ?
+                        <>
+                            <p>Supprimer Compte</p>
+                            <i class="fas fa-user-slash" onClick={() => setShowDeleteAlert(true)} />
+                        </>
+                        :
+                        <div className="deletePopup">
+                            <p className="popupTitle">Confirmer?</p>
+                            <div className="deleteButtons">
+                                <button type="button" class="btn btn-danger btn-sm" onClick={deleteAccount}>Supprimer</button>
+                                <button type="button" class="btn btn-secondary" onClick={() => setShowDeleteAlert(false)}>Annuler</button>
+                            </div>
+
+                        </div>
+                    }
+                </div>
             </div>
             <table className="table">
                 <thead>
@@ -200,7 +227,7 @@ export default function Profil() {
                                             "http://localhost:8080/file/getById/" + article.articlePicture.id
                                             :
                                             "https://orgaphenix.com/wp-content/uploads/2020/01/secrets-photo-profil-linkedin.jpeg"}
-                                        alt="" 
+                                        alt=""
                                         className="singlePostImgProfil" />
                                     }
                                     <label htmlFor={article.id}>
