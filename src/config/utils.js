@@ -1,14 +1,14 @@
 import crypto from 'crypto-js';
-import Env from './env'
+// import Env from '../../env'
 
 export const encryptData = (str) => {
   return crypto.AES.encrypt(
-    JSON.stringify(str), Env.secret.TOKEN_ENCRYPT
+    JSON.stringify(str), process.env.REACT_APP_SALT
   ).toString();
 }
 
 export const decryptData = (cryptedStr) => {
   return JSON.parse(
-    crypto.AES.decrypt(cryptedStr, Env.secret.TOKEN_ENCRYPT)
+    crypto.AES.decrypt(cryptedStr, process.env.REACT_APP_SALT)
       .toString(crypto.enc.Utf8));
 }
