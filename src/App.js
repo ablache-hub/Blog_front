@@ -31,7 +31,7 @@ function App() {
         <Route path="/profil">{token ? <Profil /> : <Login/>}</Route>
         <Route path="/edit/:username/post/:postId">{token ? <ProfilEdit /> : <Login/>}</Route>
         <Route path="/author/:username/post/:postId">
-          <Article/>
+          <Article/> 
         </Route>
 
       </Switch>
