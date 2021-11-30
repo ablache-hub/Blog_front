@@ -3,9 +3,5 @@
     "routes": {
       "/**": "index.html"
     },
-    "proxies": {
-      "/api/": {
-        "origin": "https://blog-back-al.herokuapp.com/"
-      }
-    }
+    "proxy": "https://blog-back-al.herokuapp.com/"
   }
