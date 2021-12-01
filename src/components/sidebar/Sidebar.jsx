@@ -9,7 +9,7 @@ export default function Sidebar() {
 
     useEffect(() => {
         const fetchingCategorie = async () => {
-            await axios.get("/api/categorie/getAll")
+            await axios.get(process.env.REACT_APP_URL_API + "/api/categorie/getAll")
                 .then((response) => {
                     setCategorie(response.data);
                 })

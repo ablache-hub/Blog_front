@@ -38,7 +38,7 @@ export default function Write() {
             newArticle.append('categorie', categorie);
             articlePic && newArticle.append('picture', articlePic);
 
-            await axios.post("/article/new/",
+            await axios.post(process.env.REACT_APP_URL_API + "/article/new/",
                 newArticle,
                 {
                     headers: {
@@ -61,7 +61,7 @@ export default function Write() {
     //Fetch catégorie pour menu
     useEffect(() => {
         const fetchingCategorie = async () => {
-            await axios.get("/api/categorie/getAll")
+            await axios.get(process.env.REACT_APP_URL_API + "/api/categorie/getAll")
                 .then((response) => {
                     setCategorieListe(response.data);
                 })
@@ -84,7 +84,7 @@ export default function Write() {
     // useEffect(() => {
     //     bodyFormData.append('file', profilePic);
     //     const postArticlePic = async () => {
-    //         await axios.post("/file/user/" + username + "/upload", bodyFormData,
+    //         await axios.post(process.env.REACT_APP_URL_API + "/file/user/" + username + "/upload", bodyFormData,
     //             {
     //                 headers: {
     //                     'Authorization': decryptData(token),

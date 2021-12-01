@@ -19,7 +19,7 @@ export default function Register() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post("/api/user/subscribe", {
+            await axios.post(process.env.REACT_APP_URL_API + "/api/user/subscribe", {
                 username: emailRef.current.value,
                 name: pseudoRef.current.value,
                 password: passwordRef.current.value,
@@ -36,7 +36,7 @@ export default function Register() {
             // if (user != null) {
             dispatch({ type: "LOGIN_START" });
             try {
-                const res = await axios.post("/login", {
+                const res = await axios.post(process.env.REACT_APP_URL_API + "/login", {
                     username: emailRef.current.value,
                     password: passwordRef.current.value,
                 })

@@ -16,7 +16,7 @@ export default function Login() {
         e.preventDefault();
         dispatch({ type: "LOGIN_START" });
         try {
-            const res = await axios.post("/login", {
+            const res = await axios.post(process.env.REACT_APP_URL_API + "/login", {
                 username: userRef.current.value,
                 password: passwordRef.current.value,
             })
@@ -25,7 +25,7 @@ export default function Login() {
                 type: "LOGIN_SUCESS",
                 payload: res,
             })
-            window.history.replaceState(null, '', '/');
+            // window.history.replaceState(null, '', '/');
 
             //   .then(res => {
             //     if (res.headers.authorization) {

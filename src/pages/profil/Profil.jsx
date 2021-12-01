@@ -23,7 +23,7 @@ export default function Profil() {
     // Fetch liste article de l'user
     useEffect(() => {
         const fetchingProfilArticles = async () => {
-            await axios.get("/api/user/myCredentials", { headers: { 'Authorization': decryptData(token) } })
+            await axios.get(process.env.REACT_APP_URL_API + "/api/user/myCredentials", { headers: { 'Authorization': decryptData(token) } })
                 .then((response) => {
                     setFetchProfil(response.data);
                 })
@@ -36,7 +36,7 @@ export default function Profil() {
     useEffect(() => {
         bodyFormData.append('file', profilePic);
         const postProfilePic = async () => {
-            await axios.post("/file/user/" + username + "/upload", bodyFormData,
+            await axios.post(process.env.REACT_APP_URL_API + "/file/user/" + username + "/upload", bodyFormData,
                 {
                     headers: {
                         'Authorization': decryptData(token),
@@ -56,7 +56,7 @@ export default function Profil() {
     // Update image profile
     const updateArticlePic = async (event) => {
         bodyFormData.append('file', event.target.files[0]);
-        await axios.post("/file/article/" + event.target.id + "/upload", bodyFormData,
+        await axios.post(process.env.REACT_APP_URL_API + "/file/article/" + event.target.id + "/upload", bodyFormData,
             {
                 headers: {
                     'Authorization': decryptData(token),
@@ -69,7 +69,7 @@ export default function Profil() {
 
     // DELETE Article
     const deleteArticle = async (event) => {
-        await axios.delete("/article/auteur/" + username + "/delete/" + event.target.id,
+        await axios.delete(process.env.REACT_APP_URL_API + "/article/auteur/" + username + "/delete/" + event.target.id,
             {
                 headers: { 'Authorization': decryptData(token) }
             });
@@ -84,7 +84,7 @@ export default function Profil() {
             name: nom
         }
         //Verifie si une caté est bien selectionnée
-        await axios.put("/api/user/" + username,
+        await axios.put(process.env.REACT_APP_URL_API + "/api/user/" + username,
             updatedProfil,
             {
                 headers: { 'Authorization': decryptData(token) }
@@ -96,7 +96,7 @@ export default function Profil() {
     }
 
     const deleteAccount = async () => {
-        await axios.delete("/api/user/delete",
+        await axios.delete(process.env.REACT_APP_URL_API + "/api/user/delete",
             {
                 headers: { 'Authorization': decryptData(token) }
             });
@@ -110,7 +110,7 @@ export default function Profil() {
     //     const updatedCredentials = {
     //         name
     //     }
-    //     await axios.put("/api/user/" + username,
+    //     await axios.put(process.env.REACT_APP_URL_API + "/api/user/" + username,
     //         updatedArticle,
     //         {
     //             headers: { 'Authorization': decryptData(token) }

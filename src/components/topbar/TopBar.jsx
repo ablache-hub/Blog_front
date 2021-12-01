@@ -23,7 +23,7 @@ export default function TopBar() {
 
     useEffect(() => {
         const fetchingProfilPic = async () => {
-            await axios.get("/api/user/myCredentials", { headers: { 'Authorization': decryptData(token) } })
+            await axios.get(process.env.REACT_APP_URL_API + "/api/user/myCredentials", { headers: { 'Authorization': decryptData(token) } })
                 .then((response) => {
                     response.data.profilePicture && setProfilPic(response.data.profilePicture.id);
                 }

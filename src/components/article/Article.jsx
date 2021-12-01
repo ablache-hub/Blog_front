@@ -24,7 +24,7 @@ export default function Article() {
     //Fetching des articles de l'utilisateur
     useEffect(() => {
         const getArticle = async () => {
-            await axios.get("/article/get/" + pathUrl)
+            await axios.get(process.env.REACT_APP_URL_API + "/article/get/" + pathUrl)
                 .then((response) => {
                     setFetchArticle(response.data);
                     setCategorie(response.data.categorie.nom);
@@ -39,7 +39,7 @@ export default function Article() {
     //Fetching catégories (pour l'UPDATE)
     useEffect(() => {
         const fetchingCategories = async () => {
-            await axios.get("/api/categorie/getAll")
+            await axios.get(process.env.REACT_APP_URL_API + "/api/categorie/getAll")
                 .then((response) => {
                     setCategorieListe(response.data);
                 })
@@ -50,7 +50,7 @@ export default function Article() {
 
     //DELETE Article
    const handleDelete = async () => {
-        await axios.delete("/article/auteur/" + username + "/delete/" + fetchArticle.id,
+        await axios.delete(process.env.REACT_APP_URL_API + "/article/auteur/" + username + "/delete/" + fetchArticle.id,
             {
                 headers: { 'Authorization': decryptData(token) }
             });
@@ -66,7 +66,7 @@ export default function Article() {
             titre: title,
             contenu
         }
-        await axios.put("/article/auteur/" + username + "/modify?categorie=" + categorie,
+        await axios.put(process.env.REACT_APP_URL_API + "/article/auteur/" + username + "/modify?categorie=" + categorie,
             updatedArticle,
             {
                 headers: { 'Authorization': decryptData(token) }
