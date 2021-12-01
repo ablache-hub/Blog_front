@@ -10,9 +10,9 @@ const Reducer = (state, action) => {
             };
         case "LOGIN_SUCESS":
             return {
-                username: action.payload.headers['access-control-allow-credentials'],
+                username: action.payload.headers.username,
                 token: action.payload.headers.authorization,
-                role: action.payload.headers.allow,
+                role: action.payload.headers.role,
                 isFetching: false,
                 error: false,
             };

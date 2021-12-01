@@ -168,7 +168,7 @@ export default function Profil() {
                 </div>
                 <img
                     className="pic-profil"
-                    src={fetchProfil.profilePicture ? "http://localhost:8080/file/getById/" + fetchProfil.profilePicture.id : "/assets/profil.png"}
+                    src={fetchProfil.profilePicture ? process.env.REACT_APP_URL_API + "/file/getById/" + fetchProfil.profilePicture.id : "/assets/profil.png"}
                     alt="" />
 
                 <label htmlFor="fileInput">
@@ -224,7 +224,7 @@ export default function Profil() {
                                 <td className="articlePictureList">
                                     {<img
                                         src={article.articlePicture ?
-                                            "http://localhost:8080/file/getById/" + article.articlePicture.id
+                                            process.env.REACT_APP_URL_API + "/file/getById/" + article.articlePicture.id
                                             :
                                             "https://orgaphenix.com/wp-content/uploads/2020/01/secrets-photo-profil-linkedin.jpeg"}
                                         alt=""

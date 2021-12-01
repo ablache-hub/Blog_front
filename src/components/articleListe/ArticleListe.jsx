@@ -8,7 +8,7 @@ export default function ArticleListe(props) {
             <img
                 className="postImg"
                 src={props.article.articlePicture ?
-                    "http://localhost:8080/file/getById/" + props.article.articlePicture.id :
+                    process.env.REACT_APP_URL_API + "/file/getById/" + props.article.articlePicture.id :
                     "https://orgaphenix.com/wp-content/uploads/2020/01/secrets-photo-profil-linkedin.jpeg"}
 
                 alt={props.article.articlePicture &&

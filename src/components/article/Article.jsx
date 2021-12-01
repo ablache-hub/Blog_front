@@ -80,7 +80,7 @@ export default function Article() {
             <div className="singlePostWrapper">
                 <img
                     src={fetchArticle.articlePicture ?
-                        "http://localhost:8080/file/getById/" + fetchArticle.articlePicture.id : "https://orgaphenix.com/wp-content/uploads/2020/01/secrets-photo-profil-linkedin.jpeg"}
+                        process.env.REACT_APP_URL_API + "/file/getById/" + fetchArticle.articlePicture.id : "https://orgaphenix.com/wp-content/uploads/2020/01/secrets-photo-profil-linkedin.jpeg"}
                     alt="" className="singlePostImg" />
 
                 {!editMode ?

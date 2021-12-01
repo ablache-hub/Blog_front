@@ -61,7 +61,7 @@ export default function TopBar() {
                     token != null ? (
                         <>
                             <img className="topImg"
-                                src={!profilPic.length == 0 ? "http://localhost:8080/file/getById/" + profilPic : "/assets/profil.png"}
+                                src={!profilPic.length == 0 ? process.env.REACT_APP_URL_API + "/file/getById/" + profilPic : "/assets/profil.png"}
                                 alt=""
                             />
                             <Link to="/profil" className="linkLogout">PROFIL</Link>
