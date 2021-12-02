@@ -71,7 +71,7 @@ export default function Article() {
             {
                 headers: { 'Authorization': decryptData(token) }
             })
-        window.location.replace("/author/" + username + "/post/" + fetchArticle.id)
+        window.location.replace("/#/author/" + username + "/post/" + fetchArticle.id)
 
     }
 

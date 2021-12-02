@@ -27,7 +27,7 @@ export default function ProfilDel() {
             {
                 headers: { 'Authorization': decryptData(token) }
             })
-        window.location.replace("/profil/")
+        window.location.replace("/#/profil/")
     }
 
     useEffect(() => {

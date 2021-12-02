@@ -115,7 +115,7 @@ export default function Profil() {
     //         {
     //             headers: { 'Authorization': decryptData(token) }
     //         })
-    //     window.location.replace("/author/" + username + "/post/" + fetchArticle.id)
+    //     window.location.replace("/#/author/" + username + "/post/" + fetchArticle.id)
 
     // }
 
@@ -244,7 +244,7 @@ export default function Profil() {
                                 </td>
                                 <td> <i className="singlePostIcon far fa-edit"
                                     id={article.id}
-                                    onClick={e => window.location.replace("/edit/" + username + "/post/" + e.target.id)}
+                                    onClick={e => window.location.replace("/#/edit/" + username + "/post/" + e.target.id)}
                                 />
                                     <i className="singlePostIcon far fa-trash-alt"
                                         id={article.id}
@@ -252,7 +252,7 @@ export default function Profil() {
                                     />
                                     <i className="far fa-eye"
                                         id={article.id}
-                                        onClick={e => window.location.replace("/author/" + username + "/post/" + e.target.id)}
+                                        onClick={e => window.location.replace("/#/author/" + username + "/post/" + e.target.id)}
                                     />
                                 </td>
                             </tr>
@@ -270,7 +270,7 @@ export default function Profil() {
                         <ul className="article" key={article.id}>
                             <i className="singlePostIcon far fa-edit"
                                 id={article.id}
-                                onClick={e => window.location.replace("/edit/" + username + "/post/" + e.target.id)}
+                                onClick={e => window.location.replace("/#/edit/" + username + "/post/" + e.target.id)}
                             />
                             <i className="singlePostIcon far fa-trash-alt"
                                 id={article.id}
@@ -278,7 +278,7 @@ export default function Profil() {
                             />
                             <i className="far fa-eye"
                                 id={article.id}
-                                onClick={e => window.location.replace("/author/" + username + "/post/" + e.target.id)}
+                                onClick={e => window.location.replace("/#/author/" + username + "/post/" + e.target.id)}
                             />
                             <li>
                                 <h1>Titre</h1>

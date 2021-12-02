@@ -55,7 +55,7 @@ export default function Write() {
     //Après POST, on redirige vers l'article nouvellement crée grâve à l'Id récup dans la reponse
     useEffect(() => {
         newId &&
-            window.location.replace("/author/" + username + "/post/" + newId);
+            window.location.replace("/#/author/" + username + "/post/" + newId);
     }, [newId])
 
     //Fetch catégorie pour menu
