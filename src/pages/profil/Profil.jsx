@@ -130,7 +130,7 @@ export default function Profil() {
                                 <p>{fetchProfil.username}</p></h1>
                             <br />
                             <h1>Pseudonyme:
-                                <i className="singlePostIcon far fa-edit" onClick={() => setEdit(true)} />
+                                <i className="singlePostIconPseudo far fa-edit" onClick={() => setEdit(true)} />
 
                                 <p>{fetchProfil.name}</p></h1>
                         </>
@@ -248,15 +248,15 @@ export default function Profil() {
                                         }
                                     />
                                 </td>
-                                <td> <i className="singlePostIcon far fa-edit"
+                                <td> <i className="singlePostIconEdit far fa-edit"
                                     id={article.id}
                                     onClick={e => window.location.replace("/#/edit/" + username + "/post/" + e.target.id)}
                                 />
-                                    <i className="singlePostIcon far fa-trash-alt"
+                                    <i className="singlePostIconDel far fa-trash-alt"
                                         id={article.id}
                                         onClick={e => deleteArticle(e)}
                                     />
-                                    <i className="far fa-eye"
+                                    <i className="singlePostIconSee far fa-eye"
                                         id={article.id}
                                         onClick={e => window.location.replace("/#/author/" + username + "/post/" + e.target.id)}
                                     />

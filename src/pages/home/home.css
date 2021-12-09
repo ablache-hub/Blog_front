@@ -17,5 +17,6 @@
 }
 
 .pagination > li {
-    padding: 0 15px 20px 15px;
+    padding: 0 15px 10px 15px;
+    font-size: x-small;
 }

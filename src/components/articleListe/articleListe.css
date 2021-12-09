@@ -18,6 +18,12 @@
 
 .postInfo > a {
     text-align: -webkit-center;
+    line-height: 1.6em;
+
+}
+
+.postInfo > a:hover {
+    text-decoration:  none;
 }
 
 .postCat {

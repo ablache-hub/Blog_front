@@ -2,7 +2,8 @@
     flex: 9;
     display: flex;
     flex-wrap: wrap;
-    margin: 20px;
+    margin-top: -10px;
+    margin-bottom: -15px;
     justify-content: center;
     min-width: 60vw;
 }
