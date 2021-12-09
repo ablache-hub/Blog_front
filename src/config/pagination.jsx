@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 export default function pagination({postPerPage, totalPosts, paginate}) {
     const PageNumbers = [];
@@ -12,12 +13,12 @@ export default function pagination({postPerPage, totalPosts, paginate}) {
             <ul className="pagination">
                 {PageNumbers.map(number => (
                     <li key={number} className="page-item">
-                        <a href="#!" 
-                        className="page-link"
+                        <Link to="#!" 
+                        className="page-link link"
                         onClick={() => paginate(number)}
                         >
                             {number}
-                        </a>
+                        </Link>
                     </li>
                 ))
                 }

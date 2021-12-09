@@ -42,14 +42,14 @@ export default function TopBar() {
                 <ul className="topList">
                     <li className="topListItem">
                         <Link to="/" className="link" onClick={cleanOnRefresh}>
-                            HOME
+                            ACCUEIL
                         </Link>
                     </li>
                     <li className="topListItem">
-                        <Link to="/write" className="link">{token && "WRITE"}</Link>
+                        <Link to="/write" className="link">{token && "ÉCRIRE"}</Link>
                     </li>
                     <li className="topListItem">
-                        <Link to="/" className="link">ABOUT</Link>
+                        <Link to="/" className="link">A PROPOS</Link>
                     </li>
                     <li className="topListItem">
                         <Link to="/" className="link">CONTACT</Link>
@@ -60,12 +60,14 @@ export default function TopBar() {
                 {
                     token != null ? (
                         <>
-                            <img className="topImg"
-                                src={!profilPic.length == 0 ? process.env.REACT_APP_URL_API + "/file/getById/" + profilPic : "/assets/profil.png"}
-                                alt=""
-                            />
-                            <Link to="/profil" className="linkLogout">PROFIL</Link>
-                            <Link to="/" className="linkLogout" onClick={handleLogout}>LOGOUT</Link>
+                            <Link to="/profil" className="linkLogout">
+                                <img className="topImg"
+                                    src={!profilPic.length == 0 ? process.env.REACT_APP_URL_API + "/file/getById/" + profilPic : "/assets/profil.png"}
+                                    alt=""
+                                />
+                            </Link>
+                            <Link to="/profil" className="linkLogout" className="link">PROFIL</Link>
+                            <Link to="/" className="link" onClick={handleLogout}>LOGOUT</Link>
                         </>
                     ) : (
                         <ul className="topList">

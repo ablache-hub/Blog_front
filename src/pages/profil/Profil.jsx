@@ -213,7 +213,7 @@ export default function Profil() {
                     {fetchProfil.articles &&
                         fetchProfil.articles.length ?
                         fetchProfil.articles.map((article) =>
-                            <tr key={article.id}>
+                            <tr key={article.id} className={"profil_list_article_" + article}>
 
                                 <th scope="row">{article.titre}</th>
                                 <td>

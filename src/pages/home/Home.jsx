@@ -39,6 +39,7 @@ export default function Home() {
                         })
                 )
         }
+        setCurrentPage(1);
         fetchingArticle()
     }, [location])
 
@@ -47,8 +48,6 @@ export default function Home() {
     const currentPosts = fetchArticle.slice(indexOfFirstPost, indexOfLastPost);
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
-    console.log(location)
 
     return (
         <>
