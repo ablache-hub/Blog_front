@@ -42,8 +42,14 @@ export default function Sidebar() {
             <div className="sidebarItem">
                 <span className="sidebarTitle">FOLLOW</span>
                 <div className="sidebarSocial">
-                    <i className="sidebarIcon fab fa-facebook-square"></i>
-                    <i className="sidebarIcon fab fa-twitter-square"></i>
+                    <a href="https://ablache-hub.github.io/Portfolio/" target="_blank"
+                        rel="noopener noreferrer" className="link">
+                        <i className="sidebarIcon fas fa-id-card" />
+                    </a>
+                    <a href="https://www.linkedin.com/in/alexandre-blache-b476421bb/" target="_blank"
+                        rel="noopener noreferrer" className="link">
+                        <i className="sidebarIcon fab fa-linkedin" />
+                    </a>
                 </div>
             </div>
         </div>

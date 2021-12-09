@@ -16,6 +16,10 @@
     align-items: center;
 }
 
+.postInfo > a {
+    text-align: -webkit-center;
+}
+
 .postCat {
     font-family: "Varela Round", sans-serif;
     font-size: 11px;
@@ -30,6 +34,7 @@
     font-size: 24px;
     font-weight: 700;
     cursor: pointer;
+    color: rgb(190, 79, 79);
 }
 
 .postDate, .postAuteur {

@@ -35,8 +35,14 @@ export default function TopBar() {
     return (
         <div className="top">
             <div className="topLeft">
-                <i className="topIcon fab fa-facebook-square"></i>
-                <i className="topIcon fab fa-twitter-square"></i>
+                 <a href="https://ablache-hub.github.io/Portfolio/" target="_blank"
+                        rel="noopener noreferrer" className="topIcon">
+                        <i className="topIcon fas fa-id-card" />
+                    </a>
+                    <a href="https://www.linkedin.com/in/alexandre-blache-b476421bb/" target="_blank"
+                        rel="noopener noreferrer" className="topIcon">
+                        <i className="topIcon fab fa-linkedin" />
+                        </a>
             </div>
             <div className="topCenter">
                 <ul className="topList">
