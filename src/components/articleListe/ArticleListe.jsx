@@ -34,7 +34,7 @@ export default function ArticleListe(props) {
                 {props.article.auteur &&
                     <span className="postAuteur">Par: {props.article.auteur.name}</span>
                 }
-                <span className="postDate">{props.article.date.slice(0, -7)}</span>
+                <span className="postDate">{props.article.date.slice(0, -10)}</span>
             </div>
             <p className="postDesc">{props.article.contenu}</p>
         </div>

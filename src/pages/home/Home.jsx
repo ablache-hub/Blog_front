@@ -40,13 +40,15 @@ export default function Home() {
                 )
         }
         fetchingArticle()
-    }, [])
+    }, [location])
 
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
     const currentPosts = fetchArticle.slice(indexOfFirstPost, indexOfLastPost);
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+    console.log(location)
 
     return (
         <>

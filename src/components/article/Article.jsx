@@ -32,8 +32,8 @@ export default function Article() {
                     setContenu(response.data.contenu);
                 })
         }
-        getArticle()
-    }, [])
+        !fetchArticle && getArticle()
+    }, [fetchArticle])
 
 
     //Fetching catégories (pour l'UPDATE)
@@ -71,7 +71,8 @@ export default function Article() {
             {
                 headers: { 'Authorization': decryptData(token) }
             })
-        window.location.replace("/#/author/" + username + "/post/" + fetchArticle.id)
+        setEditMode(false);
+        window.location.reload();
 
     }
 
@@ -111,7 +112,7 @@ export default function Article() {
                                     : void 0
                                 }
                             </span>
-                            <span className="singlePostDate">{fetchArticle.date}</span>
+                            <span className="singlePostDate">{fetchArticle.date && fetchArticle.date.slice(0, -3)}</span>
                         </div>
                         <p className="singlePostDesc">{fetchArticle.contenu}</p>
                     </>

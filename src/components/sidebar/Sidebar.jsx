@@ -29,7 +29,7 @@ export default function Sidebar() {
                 <ul className="sidebarList">
                     {categorie.map((categorie) => (
                         <li className="sidebarListItem" key={categorie.id}>
-                            <a href={`/?cat=${categorie.nom}`}>{categorie.nom}</a>
+                            <a href={`#/?cat=${categorie.nom}`}>{categorie.nom}</a>
                         </li>
                     )
                     )}

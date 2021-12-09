@@ -100,8 +100,8 @@ export default function Profil() {
             {
                 headers: { 'Authorization': decryptData(token) }
             });
-            dispatch({ type: "LOGOUT" })
-            // window.location.replace("/");
+        dispatch({ type: "LOGOUT" })
+        // window.location.replace("/");
     }
 
     //UPDATE Article
@@ -216,7 +216,13 @@ export default function Profil() {
                             <tr key={article.id}>
 
                                 <th scope="row">{article.titre}</th>
-                                <td>{article.date}</td>
+                                <td>
+                                    {
+                                        article.date.substr(0, 7) == "Modifié" ?
+                                            article.date.slice(11, 29) :
+                                            article.date.slice(3, -3)
+                                    }
+                                </td>
                                 <td>{article.categorie.nom}</td>
                                 <td>
                                     <p className="contenu overflow-auto">{article.contenu}</p>
