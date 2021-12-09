@@ -2,6 +2,20 @@
     padding-top: 50px;
 }
 
+.file_input_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: -200px;
+    margin-left: 20px;
+    color: white;
+    mix-blend-mode: difference;
+}
+
+.file_input_label {
+    margin-bottom: -2px;
+}
+
 .writeImg {
     margin-left: 150px;
     width: 70vw;

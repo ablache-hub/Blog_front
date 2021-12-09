@@ -49,7 +49,7 @@ export default function TopBar() {
                         <Link to="/write" className="link">{token && "ÉCRIRE"}</Link>
                     </li>
                     <li className="topListItem">
-                        <Link to="/" className="link">A PROPOS</Link>
+                        <Link to="/" className="link">ABOUT</Link>
                     </li>
                     <li className="topListItem">
                         <Link to="/" className="link">CONTACT</Link>

@@ -111,19 +111,22 @@ export default function Write() {
                 onSubmit={handleSubmit}>
 
                 <div className="writeFormGroup">
-                    <label htmlFor="fileInput">
-                        <i className="writeIcon fas fa-plus"></i>
-                    </label>
+                    <div className="file_input_wrapper">
+                        <label htmlFor="fileInput" className="file_input_label">
+                            <i className="writeIcon fas fa-plus"></i>
+                        </label>
 
-                    {/* {errorPopup &&
+                        {/* {errorPopup &&
                         error === 'pic' && <div className='error'>Veuillez ajouter une image</div>
                     } */}
-                    <input
-                        type="file"
-                        id="fileInput"
-                        onChange={e => setArticlePic(e.target.files[0])}
-                        style={{ display: "none" }} />
-
+                        <input
+                            type="file"
+                            id="fileInput"
+                            onChange={e => setArticlePic(e.target.files[0])}
+                            style={{ display: "none" }}
+                        />
+                        <label htmlFor="fileInput" style={{ cursor: "pointer" }}>Ajouter Image</label>
+                    </div>
                     {/* {errorPopup &&
                         error === 'titre' && <div className='error'>Titre requis</div>
                     } */}
@@ -145,7 +148,7 @@ export default function Write() {
                         id="cat-select"
                         onChange={e => setCategorie(e.target.value)}
                         required
-                        >
+                    >
                         <option value="">--Choisissez une catégorie--</option>
                         {
                             categorieListe.map((categorie) => (
@@ -161,7 +164,6 @@ export default function Write() {
                     error === 'contenu' && <div className='error'>Contenu requis</div>
                 } */}
                 <div className="writeFormGroup">
-
                     <textarea
                         placeholder="Ecrivez texte..."
                         type="text"
@@ -169,8 +171,8 @@ export default function Write() {
                         onChange={e => setContenu(e.target.value)}
                         required
                     />
+                    <button className="writeSubmit" type='submit'>Publier</button>
                 </div>
-                <button className="writeSubmit" type='submit'>Publier</button>
             </form>
         </div>
     )
