@@ -133,7 +133,7 @@ export default function Write() {
                     <input
                         type="text"
                         placeholder="Titre article"
-                        className="writeInput"
+                        className="writeInput writeInputTitre"
                         autoFocus={true}
                         onChange={e => (setTitle(e.target.value))}
                         required

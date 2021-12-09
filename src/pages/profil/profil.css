@@ -19,6 +19,7 @@
     margin-left: 50px;
 }
 
+
 .deleteUser {
     display: flex;
     flex-direction: column;
@@ -73,6 +74,12 @@
 
 .article {
     margin-top: 30px;
+}
+
+.profile_new_article_input {
+    color: teal;
+    margin-left: 10px;
+    cursor: pointer;
 }
 
 .input-group, .btn {

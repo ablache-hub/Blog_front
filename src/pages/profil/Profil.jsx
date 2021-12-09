@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import "./profil.css"
 import { useEffect, useState, useContext } from "react";
 import { Context } from "../../context/Context";
@@ -210,6 +211,17 @@ export default function Profil() {
                     </tr>
                 </thead>
                 <tbody>
+                    <tr>
+                        <th scope="row">
+                            <div>
+                                <span>Nouvel Article</span>
+
+                                <Link to="/write" className="profile_new_article_input">
+                                    <i class="far fa-plus-square" />
+                                </Link>
+                            </div>
+                        </th>
+                    </tr>
                     {fetchProfil.articles &&
                         fetchProfil.articles.length ?
                         fetchProfil.articles.map((article) =>
