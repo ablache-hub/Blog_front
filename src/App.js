@@ -14,6 +14,7 @@ import Article from "./components/article/Article";
 import { Context } from "./context/Context";
 import Profil from "./pages/profil/Profil";
 import ProfilEdit from "./pages/profil/ProfilArticleEdit";
+import Contact from "./pages/contact/Contact";
 
 function App() {
   const {token} = useContext(Context);
@@ -27,6 +28,7 @@ function App() {
         <Route path="/register">{token ? <Home/>:<Register />}</Route>
         <Route path="/login">{token ? <Home/>:<Login />}</Route>
         <Route path="/write">{token ? <Write /> : <Register/>}</Route>
+        <Route path="/contact"><Contact/></Route>
         <Route path="/settings">{token ? <Settings /> : <Register/>}</Route>
         <Route path="/profil">{token ? <Profil /> : <Login/>}</Route>
         <Route path="/edit/:username/post/:postId">{token ? <ProfilEdit /> : <Login/>}</Route>

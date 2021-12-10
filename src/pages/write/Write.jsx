@@ -61,7 +61,7 @@ export default function Write() {
     //Fetch catégorie pour menu
     useEffect(() => {
         const fetchingCategorie = async () => {
-            await axios.get(process.env.REACT_APP_URL_API + "/api/categorie/getAll")
+            await axios.get(process.env.REACT_APP_URL_API + "/categorie/getAll")
                 .then((response) => {
                     setCategorieListe(response.data);
                 })

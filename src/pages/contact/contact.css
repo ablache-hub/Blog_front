@@ -1,0 +1,18 @@
+.contact-section {
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.contact__form {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact__button {
+    margin-top: 0;
+    margin-left: 0;
+
+}

@@ -23,7 +23,7 @@ export default function TopBar() {
 
     useEffect(() => {
         const fetchingProfilPic = async () => {
-            await axios.get(process.env.REACT_APP_URL_API + "/api/user/myCredentials", { headers: { 'Authorization': decryptData(token) } })
+            await axios.get(process.env.REACT_APP_URL_API + "/user/myCredentials", { headers: { 'Authorization': decryptData(token) } })
                 .then((response) => {
                     response.data.profilePicture && setProfilPic(response.data.profilePicture.id);
                 }
@@ -58,7 +58,7 @@ export default function TopBar() {
                         <Link to="/" className="link">ABOUT</Link>
                     </li>
                     <li className="topListItem">
-                        <Link to="/" className="link">CONTACT</Link>
+                        <Link to="/contact" className="link">CONTACT</Link>
                     </li>
                 </ul>
             </div>
@@ -68,7 +68,7 @@ export default function TopBar() {
                         <>
                             <Link to="/profil" className="linkLogout">
                                 <img className="topImg"
-                                    src={!profilPic.length == 0 ? process.env.REACT_APP_URL_API + "/file/getById/" + profilPic : "/assets/profil.png"}
+                                    src={!profilPic.length == 0 ? process.env.REACT_APP_URL_API + "/file/get/getById/" + profilPic : "/assets/profil.png"}
                                     alt=""
                                 />
                             </Link>

@@ -50,7 +50,7 @@ export default function Article() {
 
     //DELETE Article
    const handleDelete = async () => {
-        await axios.delete(process.env.REACT_APP_URL_API + "/article/auteur/" + username + "/delete/" + fetchArticle.id,
+        await axios.delete(process.env.REACT_APP_URL_API + "/article/delete/" + fetchArticle.id,
             {
                 headers: { 'Authorization': decryptData(token) }
             });
@@ -66,7 +66,7 @@ export default function Article() {
             titre: title,
             contenu
         }
-        await axios.put(process.env.REACT_APP_URL_API + "/article/auteur/" + username + "/modify?categorie=" + categorie,
+        await axios.put(process.env.REACT_APP_URL_API + "/article/modify?categorie=" + categorie,
             updatedArticle,
             {
                 headers: { 'Authorization': decryptData(token) }
@@ -81,7 +81,7 @@ export default function Article() {
             <div className="singlePostWrapper">
                 <img
                     src={fetchArticle.articlePicture ?
-                        process.env.REACT_APP_URL_API + "/file/getById/" + fetchArticle.articlePicture.id : "https://orgaphenix.com/wp-content/uploads/2020/01/secrets-photo-profil-linkedin.jpeg"}
+                        process.env.REACT_APP_URL_API + "/file/get/getById/" + fetchArticle.articlePicture.id : "https://orgaphenix.com/wp-content/uploads/2020/01/secrets-photo-profil-linkedin.jpeg"}
                     alt="" className="singlePostImg" />
 
                 {!editMode ?

@@ -19,7 +19,7 @@ export default function Register() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post(process.env.REACT_APP_URL_API + "/api/user/subscribe", {
+            await axios.post(process.env.REACT_APP_URL_API + "/user/subscribe", {
                 username: emailRef.current.value,
                 name: pseudoRef.current.value,
                 password: passwordRef.current.value,

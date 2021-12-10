@@ -27,7 +27,7 @@ export default function Home() {
                 :
                 //Sinon si param dans l'URL mais pas de "cat=" (donc username)
                 (location ?
-                    await axios.get(process.env.REACT_APP_URL_API + "/api/user/get/" + location)
+                    await axios.get(process.env.REACT_APP_URL_API + "/user/get/" + location)
                         .then((response) => {
                             setFetchArticle(response.data.articles)
                         })
