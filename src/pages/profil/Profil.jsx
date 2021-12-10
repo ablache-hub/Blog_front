@@ -24,7 +24,7 @@ export default function Profil() {
     // Fetch liste article de l'user
     useEffect(() => {
         const fetchingProfilArticles = async () => {
-            await axios.get(process.env.REACT_APP_URL_API + "/user/myCredentials", { headers: { 'Authorization': decryptData(token) } })
+            await axios.get(process.env.REACT_APP_URL_API + "/api/user/myCredentials", { headers: { 'Authorization': decryptData(token) } })
                 .then((response) => {
                     setFetchProfil(response.data);
                 })
@@ -37,7 +37,7 @@ export default function Profil() {
     useEffect(() => {
         bodyFormData.append('file', profilePic);
         const postProfilePic = async () => {
-            await axios.post(process.env.REACT_APP_URL_API + "/file/user/upload", bodyFormData,
+            await axios.post(process.env.REACT_APP_URL_API + "/api/file/user/upload", bodyFormData,
                 {
                     headers: {
                         'Authorization': decryptData(token),
@@ -57,7 +57,7 @@ export default function Profil() {
     // Update image profile
     const updateArticlePic = async (event) => {
         bodyFormData.append('file', event.target.files[0]);
-        await axios.post(process.env.REACT_APP_URL_API + "/file/article/" + event.target.id + "/upload", bodyFormData,
+        await axios.post(process.env.REACT_APP_URL_API + "/api/file/article/" + event.target.id + "/upload", bodyFormData,
             {
                 headers: {
                     'Authorization': decryptData(token),
@@ -70,7 +70,7 @@ export default function Profil() {
 
     // DELETE Article
     const deleteArticle = async (event) => {
-        await axios.delete(process.env.REACT_APP_URL_API + "/article/delete/" + event.target.id,
+        await axios.delete(process.env.REACT_APP_URL_API + "/api/article/delete/" + event.target.id,
             {
                 headers: { 'Authorization': decryptData(token) }
             });
@@ -84,7 +84,7 @@ export default function Profil() {
             // username: user && user,
             name: nom
         }
-        await axios.put(process.env.REACT_APP_URL_API + "/user/update",
+        await axios.put(process.env.REACT_APP_URL_API + "/api/user/update",
             updatedProfil,
             {
                 headers: { 'Authorization': decryptData(token) }
@@ -96,7 +96,7 @@ export default function Profil() {
     }
 
     const deleteAccount = async () => {
-        await axios.delete(process.env.REACT_APP_URL_API + "/user/delete",
+        await axios.delete(process.env.REACT_APP_URL_API + "/api/user/delete",
             {
                 headers: { 'Authorization': decryptData(token) }
             });
@@ -168,7 +168,7 @@ export default function Profil() {
                 </div>
                 <img
                     className="pic-profil"
-                    src={fetchProfil.profilePicture ? process.env.REACT_APP_URL_API + "/file/get/getById/" + fetchProfil.profilePicture.id : "/assets/profil.png"}
+                    src={fetchProfil.profilePicture ? process.env.REACT_APP_URL_API + "/api/file/get/getById/" + fetchProfil.profilePicture.id : "/assets/profil.png"}
                     alt="" />
 
                 <label htmlFor="fileInput">
@@ -241,7 +241,7 @@ export default function Profil() {
                                 <td className="articlePictureList">
                                     {<img
                                         src={article.articlePicture ?
-                                            process.env.REACT_APP_URL_API + "/file/get/getById/" + article.articlePicture.id
+                                            process.env.REACT_APP_URL_API + "/api/file/get/getById/" + article.articlePicture.id
                                             :
                                             "https://orgaphenix.com/wp-content/uploads/2020/01/secrets-photo-profil-linkedin.jpeg"}
                                         alt=""

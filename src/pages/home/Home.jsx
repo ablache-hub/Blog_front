@@ -20,20 +20,20 @@ export default function Home() {
         const fetchingArticle = async () => {
             //Si catégorie dans URL, on récup la catégorie et on fetch avec
             location.includes("cat=") ?
-                await axios.get(process.env.REACT_APP_URL_API + "/article/get/allByCategorie/" + location.replace("cat=", ""))
+                await axios.get(process.env.REACT_APP_URL_API + "/api/article/get/allByCategorie/" + location.replace("cat=", ""))
                     .then((response) => {
                         setFetchArticle(response.data)
                     })
                 :
                 //Sinon si param dans l'URL mais pas de "cat=" (donc username)
                 (location ?
-                    await axios.get(process.env.REACT_APP_URL_API + "/user/get/" + location)
+                    await axios.get(process.env.REACT_APP_URL_API + "/api/user/get/" + location)
                         .then((response) => {
                             setFetchArticle(response.data.articles)
                         })
                     //Sinon on charge la liste générique
                     :
-                    await axios.get(process.env.REACT_APP_URL_API + "/article/get/all")
+                    await axios.get(process.env.REACT_APP_URL_API + "/api/article/get/all")
                         .then((response) => {
                             setFetchArticle(response.data)
                         })

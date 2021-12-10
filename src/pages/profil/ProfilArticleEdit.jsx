@@ -21,7 +21,7 @@ export default function ProfilDel() {
             titre: title,
             contenu
         }
-        await axios.put(process.env.REACT_APP_URL_API + "/article/modify?categorie=" + categorie,
+        await axios.put(process.env.REACT_APP_URL_API + "/api/article/modify?categorie=" + categorie,
             newPost,
             {
                 headers: { 'Authorization': decryptData(token) }
@@ -31,7 +31,7 @@ export default function ProfilDel() {
 
     useEffect(() => {
         const fetchingProfilArticle = async () => {
-            await axios.get(process.env.REACT_APP_URL_API + "/article/get/" + location, { headers: { 'Authorization': decryptData(token) } })
+            await axios.get(process.env.REACT_APP_URL_API + "/api/article/get/" + location, { headers: { 'Authorization': decryptData(token) } })
                 .then((response) => {
                     // setFetchArticle(response.data);
                     setCategorie(response.data.categorie.nom);
@@ -44,7 +44,7 @@ export default function ProfilDel() {
 
     useEffect(() => {
         const fetchingCategorie = async () => {
-            await axios.get(process.env.REACT_APP_URL_API + "/categorie/getAll")
+            await axios.get(process.env.REACT_APP_URL_API + "/api/categorie/getAll")
                 .then((response) => {
                     setCategorieListe(response.data);
                 })
