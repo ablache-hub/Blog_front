@@ -16,6 +16,10 @@
     margin-bottom: -2px;
 }
 
+.file_size {
+    font-size: xx-small;
+}
+
 .writeImg {
     margin-left: 150px;
     width: 70vw;

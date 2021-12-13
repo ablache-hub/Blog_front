@@ -125,7 +125,7 @@ export default function Write() {
                             onChange={e => setArticlePic(e.target.files[0])}
                             style={{ display: "none" }}
                         />
-                        <label htmlFor="fileInput" style={{ cursor: "pointer" }}>Ajouter Image</label>
+                        <label htmlFor="fileInput" style={{ cursor: "pointer" }}>Ajouter Image <br></br><span className="file_size">(max. 512Ko)</span></label>
                     </div>
                     {/* {errorPopup &&
                         error === 'titre' && <div className='error'>Titre requis</div>
